@@ -23,7 +23,6 @@ const MainHeaderComponent = () => {
         <ul className={"flex text-white gap-3"}>
             <LinkToPage link={"#"} icon={"icon/coupon.svg"} title={"Мои купоны"} isActive={true}/>
             <LinkToPage link={"#"} icon={"icon/question.svg"} title={"Как играть?"} isActive={false}/>
-
         </ul>
     );
 };

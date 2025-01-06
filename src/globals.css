@@ -6,3 +6,19 @@ body {
     padding: 0;
     margin: 0;
 }
+
+@keyframes pulse-slight {
+    0% {
+        transform: translateY(0) translateX(0) rotateZ(0deg);
+    }
+    50% {
+        transform: translateY(5px) rotateZ(5deg);
+    }
+    100% {
+        transform: translateY(0) translateX(0) rotateZ(0deg);
+    }
+}
+
+.animate-pulse-slight {
+    animation: pulse-slight 2s ease-in-out infinite;
+}
