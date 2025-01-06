@@ -1,5 +1,6 @@
 import GiftComponent from "@/components/gift-component";
 import MainHeaderComponent from "@/components/main-header-component";
+import MainInfo from "@/components/main-info";
 import RouletteComponent from "@/components/roulette-component";
 import PageLayout from "@/layout/page-layout";
 import React from "react";
@@ -12,6 +13,7 @@ const Index = () => {
                 <MainHeaderComponent/>
                 <GiftComponent/>
                 <RouletteComponent/>
+                <MainInfo/>
             </div>
 
         </PageLayout>
