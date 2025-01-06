@@ -17,7 +17,7 @@ const LinkToPage = (
         <div className={" flex justify-center"}>
             <img src={props?.icon} alt="icon" className="w-6 h-6"/>
         </div>
-        <div className={"text-white"}>{props?.title}</div>
+        <div className={"text-xs mt-1 text-white"}>{props?.title}</div>
     </Link>
 
 }
