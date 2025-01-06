@@ -1,4 +1,4 @@
-import PageLayout from "@/layout/page-layout";
+import PageLayout from "@/layouts/page-layout";
 
 const Tasks = () => {
 

@@ -68,7 +68,7 @@ const PageLayout = (props: { children?: React.ReactNode }) => {
                 </div>
 
                 {/* Контейнер контента */}
-                <div className="container mx-auto p-8">{props?.children}</div>
+                <div className="container mx-auto p-4">{props?.children}</div>
             </main>
         </>
     );
