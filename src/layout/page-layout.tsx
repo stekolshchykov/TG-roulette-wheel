@@ -1,10 +1,15 @@
+import {useRouter} from "next/router";
 import React from "react";
 
-const Index = () => {
-    return (
+const PageLayout = (props: { children?: React.ReactNode }) => {
+
+    const router = useRouter();
+    const isMainPage = router.pathname === "/"
+
+    return <>
         <main className="relative z-10 text-white font-proxima">
             <div className="fixed inset-0 -z-10 bg-[#151515] overflow-hidden">
-                <div className="absolute inset-0 pointer-events-none">
+                {isMainPage && <div className="absolute inset-0 pointer-events-none">
                     <img
                         src="https://v2.wbruletka.games/assets/mainglow-Dj1P_1uN.webp"
                         width={500}
@@ -45,41 +50,14 @@ const Index = () => {
                         className="absolute bottom-[-22%]"
                         style={{transform: "scale(2)"}}
                     />
-                </div>
+                </div>}
             </div>
 
             <div className="container mx-auto p-8">
-                <h1 className="text-4xl font-bold">Roulette</h1>
-                <p className="mt-4">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat est in mauris feugiat, vitae
-                    ultricies risus congue...
-
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat est in mauris feugiat, vitae
-                    ultricies risus congue...
-
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat est in mauris feugiat, vitae
-                    ultricies risus congue...
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat est in mauris feugiat, vitae
-                    ultricies risus congue... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat
-                    est in mauris feugiat, vitae
-                    ultricies risus congue...
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat est in mauris feugiat, vitae
-                    ultricies risus congue...
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat est in mauris feugiat, vitae
-                    ultricies risus congue...
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat est in mauris feugiat, vitae
-                    ultricies risus congue...
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat est in mauris feugiat, vitae
-                    ultricies risus congue... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat
-                    est in mauris feugiat, vitae
-                    ultricies risus congue...
-
-
-                </p>
-                {/* Остальной текст */}
+                {props?.children}
             </div>
         </main>
-    );
-};
+    </>
+}
 
-export default Index;
+export default PageLayout;
