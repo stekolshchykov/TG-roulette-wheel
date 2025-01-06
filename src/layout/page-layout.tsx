@@ -56,14 +56,27 @@ const PageLayout = (props: { children?: React.ReactNode }) => {
                             />
                         </div>
                     ) : (
-                        // Фон для внутренних страниц
-                        <div className="absolute inset-0 overflow-hidden h-[150px]">
-                            <img
-                                src="https://v2.wbruletka.games/assets/topglow-CCU_uSUO.png"
-                                alt="Background mask"
-                                className="w-full h-full object-cover"
-                            />
-                        </div>
+                        <>
+                            <div className="absolute inset-0 overflow-hidden h-[150px] relative">
+                                <img
+                                    className="w-full h-full object-cover"
+                                    src="https://v2.wbruletka.games/assets/topglow-CCU_uSUO.png"
+                                />
+                                <div
+                                    className="absolute inset-0 bg-gradient-to-t from-[#151515] via-[#151515]/20 to-transparent"
+                                />
+                            </div>
+
+
+                        </>
+                        // // Фон для внутренних страниц
+                        // <div className="absolute inset-0 overflow-hidden h-[150px]">
+                        // <img
+                        // src="https://v2.wbruletka.games/assets/topglow-CCU_uSUO.png"
+                        // alt="Background mask"
+                        //         className="w-full h-full object-cover"
+                        //     />
+                        // </div>
                     )}
                 </div>
 
