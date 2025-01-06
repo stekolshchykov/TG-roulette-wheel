@@ -22,7 +22,7 @@ const GiftComponent = () => {
 
     return (
         // <div className={"h-[100px] flex bg-main-accent relative"}>
-        <div className={" bg-main-accent relative"}>
+        <div className={"h-[110px]  relative"}>
             <div
                 className="absolute right-4 top-[0px] w-[75px] h-[96px] flex flex-col justify-end items-center cursor-pointer z-[70]">
                 <img
