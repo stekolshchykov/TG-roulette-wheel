@@ -1,84 +1,33 @@
+import PageLayout from "@/layout/page-layout";
 import React from "react";
 
 const Index = () => {
     return (
-        <main className="relative z-10 text-white font-proxima">
-            <div className="fixed inset-0 -z-10 bg-[#151515] overflow-hidden">
-                <div className="absolute inset-0 pointer-events-none">
-                    <img
-                        src="https://v2.wbruletka.games/assets/mainglow-Dj1P_1uN.webp"
-                        width={500}
-                        height={300}
-                        alt=""
-                        className="absolute left-1/2 w-full bottom-[-20%]"
-                        style={{transform: "translate(-50%, -50%) scale(5)"}}
-                    />
-                    <img
-                        src="https://v2.wbruletka.games/assets/barright-gAs5sVTc.webp"
-                        width={200}
-                        height={200}
-                        alt=""
-                        className="absolute bottom-0"
-                        style={{transform: "scale(2) translateX(55%)"}}
-                    />
-                    <img
-                        src="https://v2.wbruletka.games/assets/barleft-CoQDTOqx.webp"
-                        width={200}
-                        height={200}
-                        alt=""
-                        className="absolute bottom-0"
-                        style={{transform: "scale(2) translateX(-20%)"}}
-                    />
-                    <img
-                        src="https://v2.wbruletka.games/assets/whiteroung-DPfb6hRO.webp"
-                        width={300}
-                        height={300}
-                        alt=""
-                        className="absolute bottom-[-24%]"
-                        style={{transform: "scale(2)"}}
-                    />
-                    <img
-                        src="https://v2.wbruletka.games/assets/bottomglow-De6_kfy1.webp"
-                        width={300}
-                        height={300}
-                        alt=""
-                        className="absolute bottom-[-22%]"
-                        style={{transform: "scale(2)"}}
-                    />
-                </div>
-            </div>
+        <PageLayout>
+            1 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat est in mauris feugiat, vitae
+            ultricies risus congue...
 
-            <div className="container mx-auto p-8">
-                <h1 className="text-4xl font-bold">Roulette</h1>
-                <p className="mt-4">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat est in mauris feugiat, vitae
-                    ultricies risus congue...
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat est in mauris feugiat, vitae
+            ultricies risus congue...
 
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat est in mauris feugiat, vitae
-                    ultricies risus congue...
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat est in mauris feugiat, vitae
+            ultricies risus congue...
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat est in mauris feugiat, vitae
+            ultricies risus congue... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat
+            est in mauris feugiat, vitae
+            ultricies risus congue...
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat est in mauris feugiat, vitae
+            ultricies risus congue...
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat est in mauris feugiat, vitae
+            ultricies risus congue...
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat est in mauris feugiat, vitae
+            ultricies risus congue...
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat est in mauris feugiat, vitae
+            ultricies risus congue... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat
+            est in mauris feugiat, vitae
+            ultricies risus congue...1
 
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat est in mauris feugiat, vitae
-                    ultricies risus congue...
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat est in mauris feugiat, vitae
-                    ultricies risus congue... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat
-                    est in mauris feugiat, vitae
-                    ultricies risus congue...
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat est in mauris feugiat, vitae
-                    ultricies risus congue...
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat est in mauris feugiat, vitae
-                    ultricies risus congue...
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat est in mauris feugiat, vitae
-                    ultricies risus congue...
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat est in mauris feugiat, vitae
-                    ultricies risus congue... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat
-                    est in mauris feugiat, vitae
-                    ultricies risus congue...
-
-
-                </p>
-                {/* Остальной текст */}
-            </div>
-        </main>
+        </PageLayout>
     );
 };
 

@@ -1,8 +1,10 @@
+import PageLayout from "@/layout/page-layout";
+
 const Friends = () => {
 
-    return <>
+    return <PageLayout>
         Friends
-    </>
+    </PageLayout>
 
 }
 

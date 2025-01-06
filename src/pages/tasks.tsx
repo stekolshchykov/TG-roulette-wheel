@@ -1,6 +1,8 @@
+import PageLayout from "@/layout/page-layout";
+
 const Tasks = () => {
 
-    return <>Tasks</>
+    return <PageLayout>Tasks</PageLayout>
 
 }
 
