@@ -7,7 +7,7 @@ interface Props {
     onAction: (status: boolean) => void
 }
 
-const WinModal = (props: Props) => {
+const QuestionModal = (props: Props) => {
 
     return <Modal
         fullSize={false}
@@ -30,25 +30,6 @@ const WinModal = (props: Props) => {
             <div className="relative z-50 h-full flex flex-col justify-center mt-10">
                 <div
                     className="text-[20.55px] font-proxima font-bold leading-[110%] tracking-[-2%] text-center mb-4">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="relative w-full h-full">
-                            <div
-                                className="absolute top-[-10%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[98px] h-[158px] z-[-1]">
-                                <div
-                                    className="w-full h-full relative"
-                                    style={{maskImage: "linear-gradient(black 10%, transparent 100%)"}}
-                                >
-                                    <Image
-                                        src="/img/prize-DTbtyTEA.webp"
-                                        alt="Prize"
-                                        width={1100}
-                                        height={1500}
-                                        className="w-full h-full object-contain"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     ПОЗДРАВЛЯЕМ! <br/>
                     ВЫ <span className="text-[#E101A8]">ВЫИГРАЛИ</span>
                     <div className="relative flex justify-center mt-2 mb-2 ml-20">
@@ -96,7 +77,8 @@ const WinModal = (props: Props) => {
                     >
                         <div
                             className="flex items-center gap-x-1 bg-gradient-to-b from-[#E204A9] to-[#FE5FD6] w-[202px] justify-center h-[44px] rounded-[12px]">
-                            <p className="font-bold text-[17px] leading-[110%] tracking-[-2%]">Забрать подарок</p>
+                            <p className="font-bold text-[17px] leading-[110%] tracking-[-2%]">Забрать
+                                подарок</p>
                         </div>
                     </button>
                 </div>
@@ -105,4 +87,4 @@ const WinModal = (props: Props) => {
     </Modal>
 
 }
-export default WinModal
+export default QuestionModal

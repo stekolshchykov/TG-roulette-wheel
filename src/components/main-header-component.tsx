@@ -1,6 +1,7 @@
+import QuestionModal from "@/modals/question-modal";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, {useState} from "react";
 
 const LinkToPage = (props: { link: string; title: string; icon: string; isActive: boolean }) => {
     return (
@@ -14,12 +15,26 @@ const LinkToPage = (props: { link: string; title: string; icon: string; isActive
 };
 
 const MainHeaderComponent = () => {
-    return (
+
+    const [questionModalStatus, setQuestionModalStatus] = useState(false)
+
+    return <>
+
         <ul className="flex text-white gap-3">
             <LinkToPage link={"/coupons"} icon={"/icon/coupon.svg"} title={"Мои купоны"} isActive={true}/>
-            <LinkToPage link={"#"} icon={"/icon/question.svg"} title={"Как играть?"} isActive={false}/>
+            <li
+                className={`text-white  flex gap-2 w-full px-4 py-3 rounded-2xl cursor-pointer`}
+                onClick={() => setQuestionModalStatus(true)}>
+                <div className={"flex gap-2"}>
+                    <Image src={"/icon/question.svg"} alt="icon" width={24} height={24}/>
+                    <span className="truncate">Как играть?</span>
+                </div>
+            </li>
         </ul>
-    );
+
+        <QuestionModal isOpen={questionModalStatus} onAction={(status) => setQuestionModalStatus(status)}/>
+
+    </>
 };
 
 export default MainHeaderComponent;
