@@ -1,5 +1,5 @@
 import CountdownTimerComponent from "@/components/countdown-timer-component";
-import ButtonUi from "@/ui/ButtonUi";
+import ButtonUi from "@/ui/button-ui";
 import Image from "next/image";
 import React from "react";
 

@@ -1,4 +1,4 @@
-import ButtonUi from "@/ui/ButtonUi";
+import ButtonUi from "@/ui/button-ui";
 import React, {useEffect, useState} from "react";
 
 interface Props {

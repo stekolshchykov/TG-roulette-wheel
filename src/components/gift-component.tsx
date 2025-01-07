@@ -11,7 +11,7 @@ const GiftComponent = () => {
 
         <div className={"h-[110px] relative"} onClick={() => setGiftModalStatus(true)}>
             <div
-                className="absolute right-4 top-[0px] w-[75px] h-[96px] flex flex-col justify-end items-center cursor-pointer z-[70]">
+                className="absolute right-4 top-[0px] w-[75px] h-[96px] flex flex-col justify-end items-center cursor-pointer z-[10]">
                 <Image
                     src={"/img/gift-CWLyQN-u.png"}
                     alt={"Gift"}
