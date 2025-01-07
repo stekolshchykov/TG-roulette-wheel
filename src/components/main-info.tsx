@@ -1,3 +1,4 @@
+import CountdownTimerComponent from "@/components/countdown-timer-component";
 import React from "react";
 
 const MainInfo = () => {
@@ -26,10 +27,11 @@ const MainInfo = () => {
                         <img src={"icon/star.svg"} alt="icon" className="w-2 h-2"/>
                         <div>Бесплатный спин</div>
                     </div>
-                    <div
-                        className="flex items-center bg-gradient-to-b from-[#E204A9] to-[#FE5FD6] max-[360px]:px-6 px-8 max-[360px]:py-1 py-[6px] rounded-[234px] opacity-50">
-                        <p className="font-bold text-[13px] max-[360px]:text-[12px] leading-[110%] tracking-[-2%]">22:33:01</p>
-                    </div>
+                    {/*<div*/}
+                    {/*    className="flex items-center bg-gradient-to-b from-[#E204A9] to-[#FE5FD6] max-[360px]:px-6 px-8 max-[360px]:py-1 py-[6px] rounded-[234px] opacity-50">*/}
+                    {/*    <p className="font-bold text-[13px] max-[360px]:text-[12px] leading-[110%] tracking-[-2%]">22:33:01</p>*/}
+                    {/*</div>*/}
+                    <CountdownTimerComponent size={"normal"} timeLeft={10800}/>
                 </div>
             </div>
 
