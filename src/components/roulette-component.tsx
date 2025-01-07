@@ -1,8 +1,9 @@
+import Image from "next/image";
 import React, {useState} from "react";
 
 interface Props {
-    spin: number
-    onClick: () => void
+    spin: number;
+    onClick: () => void;
 }
 
 const RouletteComponent = (props: Props) => {
@@ -13,7 +14,7 @@ const RouletteComponent = (props: Props) => {
 
     const spinRoulette = () => {
         if (props.spin > 0) {
-            props.onClick()
+            props.onClick();
 
             setRotationInner(535);
 
@@ -35,78 +36,75 @@ const RouletteComponent = (props: Props) => {
                     style={{width: 315, height: 315, margin: "0 auto", transform: "scale(0.9)"}}
                 >
                     {/* Стрелки */}
-                    <img
+                    <Image
                         src="/img/arrow-Ba6Z2jBJ.png"
                         alt="Arrow for middle circle"
-                        className="absolute w-[23.74px] h-[18.47px] z-30"
+                        width={24}
+                        height={18}
+                        className="absolute z-30"
                         style={{top: "7.5%", left: "50%", transform: "translateX(-50%)"}}
                     />
-                    <img
+                    <Image
                         src="/img/arrow-Ba6Z2jBJ.png"
                         alt="Arrow for small circle"
-                        className="absolute w-[23.74px] h-[18.47px] z-40"
+                        width={24}
+                        height={18}
+                        className="absolute z-40"
                         style={{top: "21%", left: "50%", transform: "translateX(-50%)"}}
                     />
-                    <img
+                    <Image
                         src="/img/arrow-Ba6Z2jBJ.png"
                         alt="Arrow for button"
-                        className="absolute w-[23.74px] h-[18.47px] z-50"
+                        width={24}
+                        height={18}
+                        className="absolute z-50"
                         style={{top: "34.6%", left: "50%", transform: "translateX(-50%)"}}
                     />
 
                     {/* Круги рулетки */}
                     <div
-                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[219px] h-[219px] z-40"
+                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-40"
                         style={{
+                            width: 219,
+                            height: 219,
                             transform: `translate(-50%, -50%) rotate(${rotationInner}deg)`,
-                            transition: "transform 1s cubic-bezier(0.3, 0.1, 0.3, 0.9)"
+                            transition: "transform 1s cubic-bezier(0.3, 0.1, 0.3, 0.9)",
                         }}
                     >
-                        <img
-                            src="/img/littlecircle-DOr2S01H.webp"
-                            alt="circle"
-                            className="w-full h-full object-contain"
-                        />
+                        <Image src="/img/littlecircle-DOr2S01H.webp" alt="Inner circle" width={219} height={219}/>
                     </div>
 
                     <div
-                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[314px] h-[314px] z-30"
+                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30"
                         style={{
+                            width: 314,
+                            height: 314,
                             transform: `translate(-50%, -50%) rotate(${rotationMiddle}deg)`,
-                            transition: "transform 1s cubic-bezier(0.3, 0.1, 0.3, 0.9)"
+                            transition: "transform 1s cubic-bezier(0.3, 0.1, 0.3, 0.9)",
                         }}
                     >
-                        <img
-                            src="/img/middlecircle-CjnyjbLd.webp"
-                            alt="circle"
-                            className="w-full h-full object-contain"
-                        />
+                        <Image src="/img/middlecircle-CjnyjbLd.webp" alt="Middle circle" width={314} height={314}/>
                     </div>
 
                     <div
-                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[315px] h-[315px] z-20"
+                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
                         style={{
+                            width: 315,
+                            height: 315,
                             transform: `translate(-50%, -50%) rotate(${rotationOuter}deg)`,
-                            transition: "transform 1s cubic-bezier(0.3, 0.1, 0.3, 0.9)"
+                            transition: "transform 1s cubic-bezier(0.3, 0.1, 0.3, 0.9)",
                         }}
                     >
-                        <img
-                            src="/img/big-B3fyK_LS.webp"
-                            alt="circle"
-                            className="w-full h-full object-contain"
-                        />
+                        <Image src="/img/big-B3fyK_LS.webp" alt="Outer circle" width={315} height={315}/>
                     </div>
 
                     {/* Кнопка вращения */}
                     <div
-                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[229px] h-[229px] z-50 cursor-pointer transition-all"
+                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 cursor-pointer transition-all"
+                        style={{width: 229, height: 229}}
                         onClick={spinRoulette}
                     >
-                        <img
-                            src="/img/button-BdOvv5f1.webp"
-                            alt="Center button"
-                            className="w-full h-full object-contain"
-                        />
+                        <Image src="/img/button-BdOvv5f1.webp" alt="Center button" width={229} height={229}/>
                     </div>
                 </div>
             </div>

@@ -15,7 +15,8 @@ const Index = () => {
         setSpin(spinInLocalStorage ? +`${spinInLocalStorage}` : 100)
     }, []);
 
-    // // spin
+
+    // // spin FIXME: uncomment in prod
     // useEffect(() => {
     //     localStorage.setItem("spin", `${spin}`)
     // }, [spin]);
