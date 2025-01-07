@@ -15,7 +15,7 @@ const RouletteComponent = (props: Props) => {
         if (props.spin > 0) {
             props.onClick()
 
-            setRotationInner(435);
+            setRotationInner(535);
 
             setTimeout(() => {
                 setRotationMiddle(435);
