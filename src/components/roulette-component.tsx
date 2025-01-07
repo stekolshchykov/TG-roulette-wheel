@@ -1,25 +1,35 @@
 import React, {useState} from "react";
 
-const RouletteComponent = () => {
+interface Props {
+    spin: number
+    onClick: () => void
+}
+
+const RouletteComponent = (props: Props) => {
     const [rotationInner, setRotationInner] = useState(0);
     const [rotationMiddle, setRotationMiddle] = useState(0);
     const [rotationOuter, setRotationOuter] = useState(0);
 
     const spinRoulette = () => {
-        const newRotation = 360 + Math.floor(Math.random() * 360); // случайный угол
+        if (props.spin > 0) {
+            props.onClick()
 
-        // Вращаем центральный круг
-        setRotationInner((prev) => prev + newRotation);
+            const newRotation = 360 + Math.floor(Math.random() * 360); // случайный угол
 
-        setTimeout(() => {
-            // Вращаем средний круг
-            setRotationMiddle((prev) => prev + newRotation);
-        }, 500); // Задержка перед вращением среднего круга
+            // Вращаем центральный круг
+            setRotationInner((prev) => prev + newRotation);
 
-        setTimeout(() => {
-            // Вращаем внешний круг
-            setRotationOuter((prev) => prev + newRotation);
-        }, 1000); // Задержка перед вращением внешнего круга
+            setTimeout(() => {
+                // Вращаем средний круг
+                setRotationMiddle((prev) => prev + newRotation);
+            }, 500); // Задержка перед вращением среднего круга
+
+            setTimeout(() => {
+                // Вращаем внешний круг
+                setRotationOuter((prev) => prev + newRotation);
+            }, 1000); // Задержка перед вращением внешнего круга
+        }
+
     };
 
     return (

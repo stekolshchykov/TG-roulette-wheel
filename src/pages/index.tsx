@@ -3,17 +3,35 @@ import MainHeaderComponent from "@/components/main-header-component";
 import MainInfo from "@/components/main-info";
 import RouletteComponent from "@/components/roulette-component";
 import PageLayout from "@/layout/page-layout";
-import React from "react";
+import React, {useEffect, useState} from "react";
 
 const Index = () => {
+
+    const [spin, setSpin] = useState(0);
+
+    // spin
+    useEffect(() => {
+        const spinInLocalStorage = localStorage.getItem("spin")
+        const spin = spinInLocalStorage ? +`${spinInLocalStorage}` : 1
+
+        setSpin(spin)
+    }, []);
+
+    // // spin
+    // useEffect(() => {
+    //     localStorage.setItem("spin", `${spin}`)
+    // }, [spin]);
+
     return (
         <PageLayout>
 
             <div className={"flex flex-col gap-6"}>
                 <MainHeaderComponent/>
                 <GiftComponent/>
-                <RouletteComponent/>
-                <MainInfo/>
+                <RouletteComponent spin={spin} onClick={() => {
+                    setSpin(spin - 1)
+                }}/>
+                <MainInfo spin={spin}/>
             </div>
 
         </PageLayout>

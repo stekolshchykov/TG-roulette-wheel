@@ -2,14 +2,14 @@ import CountdownTimerComponent from "@/components/countdown-timer-component";
 import ButtonUi from "@/ui/ButtonUi";
 import React from "react";
 
-const MainInfo = () => {
+const MainInfo = (props: { spin: number }) => {
     return (
         <div className="px-4 mb-[75px] space-y-[6px] flex-shrink-0">
             <div
                 className="rounded-xl border-t border-[#5A3754] backdrop-blur-[0px] bg-[#4E4E4E]/15 max-[360px]:py-3 py-4 flex justify-center items-center gap-x-2">
                 <img src={"icon/roulette-accent.svg"} alt="icon" className="w-6 h-6"/>
                 <div className="text-white text-lg font-semibold flex gap-2">
-                    <div>0 Вращений</div>
+                    <div>{props.spin} Вращений</div>
                 </div>
             </div>
             <div className={"flex gap-2"}>
