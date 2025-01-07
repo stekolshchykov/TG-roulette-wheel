@@ -44,18 +44,32 @@ const GiftModal = (props: Props) => {
                 className="absolute top-4 right-4 z-[70] hover:opacity-80 active:scale-95 transition-all"
                 onClick={() => props.onAction(false)}
             >
-                <Image src={"/icon/x.svg"} alt={""} height={27} width={27}/>
+                <svg
+                    width="27.383362"
+                    height="27.293045"
+                    viewBox="0 0 27.3834 27.293"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        d="M20.6405 6.90352C20.1971 6.46018 19.4784 6.46018 19.035 6.90352L13.7369 12.2016L8.43884 6.90355C7.99548 6.46021 7.27667 6.46021 6.83337 6.90355C6.39001 7.34689 6.39001 8.06569 6.83337 8.50903L12.1314 13.8071L6.99396 18.9446C6.55066 19.3879 6.55066 20.1067 6.99396 20.55C7.43732 20.9934 8.15613 20.9934 8.59943 20.55L13.7369 15.4126L18.8744 20.5501C19.3177 20.9934 20.0365 20.9934 20.4799 20.5501C20.9232 20.1067 20.9232 19.3879 20.4799 18.9446L15.3424 13.8071L20.6405 8.50899C21.0839 8.06565 21.0839 7.34686 20.6405 6.90352Z"
+                        fill="#FFFFFF"
+                    />
+                </svg>
             </button>
             <div className="relative z-50 h-full flex flex-col justify-center mt-10">
                 <div
                     className="text-[20.55px] font-proxima font-bold leading-[110%] tracking-[-2%] text-center mb-4">
-                    <img
-                        src="https://v2.wbruletka.games/assets/textlogo-CNagRihx.webp"
+                    <Image
+                        src="/img/textlogo-CNagRihx.webp"
                         alt="WB"
-                        className="inline-block w-[67px] h-[33px] object-cover"
-                        style={{transform: "scale(3)"}}
+                        width={67}
+                        height={33}
+                        className="inline-block object-cover"
+                        style={{transform: "scale(3)", width: "37px", display: "inline-block"}}
                     />
-                    <span className="text-[#E101A8]">рулетка</span> - Дарит подарок от партнера
+                    <span className="text-[#E101A8]" style={{marginLeft: "5px"}}>рулетка</span> - Дарит подарок от
+                    партнера
                     <br/>
                     каждому <span className="text-[#E101A8]">своему участнику</span>
                     <div className="relative flex justify-center mt-2 ml-20">
