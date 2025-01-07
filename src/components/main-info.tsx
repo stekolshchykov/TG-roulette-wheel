@@ -1,12 +1,9 @@
 import CountdownTimerComponent from "@/components/countdown-timer-component";
-import GiftModal from "@/modals/gift-modal";
 import ButtonUi from "@/ui/ButtonUi";
 import Image from "next/image";
-import React, {useState} from "react";
+import React from "react";
 
 const MainInfo = (props: { spin: number }) => {
-
-    const [giftModalStatus, setGiftModalStatus] = useState(false)
 
     return (
         <div className="px-4 mb-[75px] space-y-[6px] flex-shrink-0">
@@ -26,7 +23,7 @@ const MainInfo = (props: { spin: number }) => {
                     <ButtonUi size={"normal"} width={150} onClick={() => {
                     }}>Получить</ButtonUi>
                 </div>
-                <div className="rounded-xl bg-[#4E4E4E]/15 py-4 flex justify-center items-center w-full flex flex-col">
+                <div className="rounded-xl bg-[#4E4E4E]/15 py-4 flex justify-center items-center w-full flex-col">
                     <div className="text-white text-base text-[13px] flex items-center gap-1">
                         <Image src="/icon/star.svg" alt="icon" width={8} height={8}/>
                         <div>Бесплатный спин</div>
@@ -34,10 +31,6 @@ const MainInfo = (props: { spin: number }) => {
                     <CountdownTimerComponent size={"normal"} timeLeft={10800}/>
                 </div>
             </div>
-
-            <button onClick={() => setGiftModalStatus(true)}>Modal</button>
-            <GiftModal isOpen={giftModalStatus} onAction={(status) => setGiftModalStatus(status)}/>
-
         </div>
     );
 };
