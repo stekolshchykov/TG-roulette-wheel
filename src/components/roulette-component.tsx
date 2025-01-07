@@ -6,6 +6,7 @@ interface Props {
 }
 
 const RouletteComponent = (props: Props) => {
+
     const [rotationInner, setRotationInner] = useState(0);
     const [rotationMiddle, setRotationMiddle] = useState(0);
     const [rotationOuter, setRotationOuter] = useState(0);
@@ -14,22 +15,16 @@ const RouletteComponent = (props: Props) => {
         if (props.spin > 0) {
             props.onClick()
 
-            const newRotation = 360 + Math.floor(Math.random() * 360); // случайный угол
-
-            // Вращаем центральный круг
-            setRotationInner((prev) => prev + newRotation);
+            setRotationInner(435);
 
             setTimeout(() => {
-                // Вращаем средний круг
-                setRotationMiddle((prev) => prev + newRotation);
-            }, 500); // Задержка перед вращением среднего круга
+                setRotationMiddle(435);
+            }, 500);
 
             setTimeout(() => {
-                // Вращаем внешний круг
-                setRotationOuter((prev) => prev + newRotation);
-            }, 1000); // Задержка перед вращением внешнего круга
+                setRotationOuter(385);
+            }, 1000);
         }
-
     };
 
     return (
@@ -41,19 +36,19 @@ const RouletteComponent = (props: Props) => {
                 >
                     {/* Стрелки */}
                     <img
-                        src="https://v2.wbruletka.games/assets/arrow-Ba6Z2jBJ.png"
+                        src="/img/arrow-Ba6Z2jBJ.png"
                         alt="Arrow for middle circle"
                         className="absolute w-[23.74px] h-[18.47px] z-30"
                         style={{top: "7.5%", left: "50%", transform: "translateX(-50%)"}}
                     />
                     <img
-                        src="https://v2.wbruletka.games/assets/arrow-Ba6Z2jBJ.png"
+                        src="/img/arrow-Ba6Z2jBJ.png"
                         alt="Arrow for small circle"
                         className="absolute w-[23.74px] h-[18.47px] z-40"
                         style={{top: "21%", left: "50%", transform: "translateX(-50%)"}}
                     />
                     <img
-                        src="https://v2.wbruletka.games/assets/arrow-Ba6Z2jBJ.png"
+                        src="/img/arrow-Ba6Z2jBJ.png"
                         alt="Arrow for button"
                         className="absolute w-[23.74px] h-[18.47px] z-50"
                         style={{top: "34.6%", left: "50%", transform: "translateX(-50%)"}}
@@ -68,7 +63,7 @@ const RouletteComponent = (props: Props) => {
                         }}
                     >
                         <img
-                            src="https://v2.wbruletka.games/assets/littlecircle-DOr2S01H.webp"
+                            src="/img/littlecircle-DOr2S01H.webp"
                             alt="circle"
                             className="w-full h-full object-contain"
                         />
@@ -82,7 +77,7 @@ const RouletteComponent = (props: Props) => {
                         }}
                     >
                         <img
-                            src="https://v2.wbruletka.games/assets/middlecircle-CjnyjbLd.webp"
+                            src="/img/middlecircle-CjnyjbLd.webp"
                             alt="circle"
                             className="w-full h-full object-contain"
                         />
@@ -96,7 +91,7 @@ const RouletteComponent = (props: Props) => {
                         }}
                     >
                         <img
-                            src="https://v2.wbruletka.games/assets/big-B3fyK_LS.webp"
+                            src="/img/big-B3fyK_LS.webp"
                             alt="circle"
                             className="w-full h-full object-contain"
                         />
@@ -108,7 +103,7 @@ const RouletteComponent = (props: Props) => {
                         onClick={spinRoulette}
                     >
                         <img
-                            src="https://v2.wbruletka.games/assets/button-BdOvv5f1.webp"
+                            src="/img/button-BdOvv5f1.webp"
                             alt="Center button"
                             className="w-full h-full object-contain"
                         />

@@ -12,9 +12,7 @@ const Index = () => {
     // spin
     useEffect(() => {
         const spinInLocalStorage = localStorage.getItem("spin")
-        const spin = spinInLocalStorage ? +`${spinInLocalStorage}` : 1
-
-        setSpin(spin)
+        setSpin(spinInLocalStorage ? +`${spinInLocalStorage}` : 100)
     }, []);
 
     // // spin
@@ -22,15 +20,17 @@ const Index = () => {
     //     localStorage.setItem("spin", `${spin}`)
     // }, [spin]);
 
+    const rouletteClickHandler = () => {
+        setSpin(spin - 1)
+    }
+
     return (
         <PageLayout>
 
             <div className={"flex flex-col gap-6"}>
                 <MainHeaderComponent/>
                 <GiftComponent/>
-                <RouletteComponent spin={spin} onClick={() => {
-                    setSpin(spin - 1)
-                }}/>
+                <RouletteComponent spin={spin} onClick={rouletteClickHandler}/>
                 <MainInfo spin={spin}/>
             </div>
 
