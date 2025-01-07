@@ -7,7 +7,7 @@ interface Props {
     onAction: (status: boolean) => void
 }
 
-const GiftModal = (props: Props) => {
+const WinModal = (props: Props) => {
 
     return <Modal
         fullSize={false}
@@ -21,25 +21,6 @@ const GiftModal = (props: Props) => {
                     background: "linear-gradient(rgb(72, 13, 63) 0%, rgba(72, 13, 63, 0) 80%)",
                 }}
             ></div>
-            <div className="absolute inset-0 flex items-center justify-center">
-                <div className="relative w-full h-full">
-                    <div
-                        className="absolute top-[20%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[158px] h-[158px]">
-                        <div
-                            className="w-full h-full relative"
-                            style={{maskImage: "linear-gradient(black 10%, transparent 100%)"}}
-                        >
-                            <Image
-                                src="/img/prize-DTbtyTEA.webp"
-                                alt="Prize"
-                                width={1100}
-                                height={1500}
-                                className="w-full h-full object-contain"
-                            />
-                        </div>
-                    </div>
-                </div>
-            </div>
             <button
                 className="absolute top-4 right-4 z-[70] hover:opacity-80 active:scale-95 transition-all"
                 onClick={() => props.onAction(false)}
@@ -49,16 +30,9 @@ const GiftModal = (props: Props) => {
             <div className="relative z-50 h-full flex flex-col justify-center mt-10">
                 <div
                     className="text-[20.55px] font-proxima font-bold leading-[110%] tracking-[-2%] text-center mb-4">
-                    <img
-                        src="https://v2.wbruletka.games/assets/textlogo-CNagRihx.webp"
-                        alt="WB"
-                        className="inline-block w-[67px] h-[33px] object-cover"
-                        style={{transform: "scale(3)"}}
-                    />
-                    <span className="text-[#E101A8]">рулетка</span> - Дарит подарок от партнера
-                    <br/>
-                    каждому <span className="text-[#E101A8]">своему участнику</span>
-                    <div className="relative flex justify-center mt-2 ml-20">
+                    ПОЗДРАВЛЯЕМ! <br/>
+                    ВЫ <span className="text-[#E101A8]">ВЫИГРАЛИ</span>
+                    <div className="relative flex justify-center mt-2 mb-2 ml-20">
                         <div
                             className="w-[167px] h-[1px] rounded-[18px] bg-gradient-to-r from-transparent to-[#E100A8]"></div>
                         <div
@@ -66,13 +40,14 @@ const GiftModal = (props: Props) => {
                             style={{filter: "blur(10px)"}}
                         ></div>
                     </div>
+                    <div className={"text-xs"}> ВОЗМОЖНОСТЬ ПОЛУЧИТЬ</div>
                 </div>
                 <div
                     className="text-[51.3px] font-proxima font-[800] leading-[110%] tracking-[-2%] text-center relative overflow-visible">
                 <span
                     className="absolute left-1/3 -translate-x-5 blur-[25px] text-[#FF31D2] whitespace-nowrap"
                 >
-                    1000Р
+                    5000Р
                 </span>
                     <span
                         className="relative text-white whitespace-nowrap"
@@ -81,7 +56,7 @@ const GiftModal = (props: Props) => {
                                 "rgb(225, 0, 168) -1px -1px 0px, rgb(225, 0, 168) 1px -1px 0px, rgb(225, 0, 168) -1px 1px 0px, rgb(225, 0, 168) 1px 1px 0px",
                         }}
                     >
-                    1000Р
+                   5000Р
                 </span>
                     <div className="relative flex justify-center w-full mt-2">
                         <div className="relative w-[150px]">
@@ -112,4 +87,4 @@ const GiftModal = (props: Props) => {
     </Modal>
 
 }
-export default GiftModal
+export default WinModal

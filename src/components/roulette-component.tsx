@@ -1,3 +1,4 @@
+import WinModal from "@/modals/win-modal";
 import Image from "next/image";
 import React, {useState} from "react";
 
@@ -12,6 +13,8 @@ const RouletteComponent = (props: Props) => {
     const [rotationMiddle, setRotationMiddle] = useState(0);
     const [rotationOuter, setRotationOuter] = useState(0);
 
+    const [winModalStatus, setWinModalStatus] = useState(false);
+
     const spinRoulette = () => {
         if (props.spin > 0) {
             props.onClick();
@@ -25,10 +28,14 @@ const RouletteComponent = (props: Props) => {
             setTimeout(() => {
                 setRotationOuter(385);
             }, 1000);
+
+            setTimeout(() => {
+                setWinModalStatus(true)
+            }, 3000);
         }
     };
 
-    return (
+    return <>
         <div className="flex-1 flex flex-col justify-end min-h-0 mb-8">
             <div className="w-full flex justify-center">
                 <div
@@ -109,7 +116,8 @@ const RouletteComponent = (props: Props) => {
                 </div>
             </div>
         </div>
-    );
+        <WinModal isOpen={winModalStatus} onAction={(status) => setWinModalStatus(status)}/>
+    </>
 };
 
 export default RouletteComponent;
