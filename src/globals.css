@@ -7,6 +7,8 @@ body {
     margin: 0;
 }
 
+/* slight */
+
 @keyframes pulse-slight {
     0% {
         transform: translateY(0) translateX(0) rotateZ(0deg);
@@ -21,4 +23,31 @@ body {
 
 .animate-pulse-slight {
     animation: pulse-slight 2s ease-in-out infinite;
+}
+
+/* modal */
+
+@keyframes modalEnter {
+    0% {
+        transform: scale(0.8) rotate(-8deg) translateY(-50px);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.05) rotate(3deg) translateY(10px);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1) rotate(0) translateY(0);
+    }
+}
+
+@keyframes modalExit {
+    0% {
+        transform: scale(1) rotate(0) translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0.9) rotate(-5deg) translateY(-30px);
+        opacity: 0;
+    }
 }

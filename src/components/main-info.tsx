@@ -1,9 +1,13 @@
 import CountdownTimerComponent from "@/components/countdown-timer-component";
 import ButtonUi from "@/ui/ButtonUi";
+import Modal from "@/ui/modal";
 import Image from "next/image";
-import React from "react";
+import React, {useState} from "react";
 
 const MainInfo = (props: { spin: number }) => {
+
+    const [isDomainModalOpen, setIsDomainModalOpen] = useState(false)
+
     return (
         <div className="px-4 mb-[75px] space-y-[6px] flex-shrink-0">
             <div
@@ -27,10 +31,17 @@ const MainInfo = (props: { spin: number }) => {
                         <Image src="/icon/star.svg" alt="icon" width={8} height={8}/>
                         <div>Бесплатный спин</div>
                     </div>
-
                     <CountdownTimerComponent size={"normal"} timeLeft={10800}/>
                 </div>
             </div>
+
+            <button onClick={() => setIsDomainModalOpen(true)}>Modal</button>
+            <Modal
+                fullSize={false}
+                isOpen={isDomainModalOpen}
+                onClose={() => setIsDomainModalOpen(false)}>
+                111
+            </Modal>
 
         </div>
     );
