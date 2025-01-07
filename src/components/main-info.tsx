@@ -1,12 +1,12 @@
 import CountdownTimerComponent from "@/components/countdown-timer-component";
+import GiftModal from "@/modals/gift-modal";
 import ButtonUi from "@/ui/ButtonUi";
-import Modal from "@/ui/modal";
 import Image from "next/image";
 import React, {useState} from "react";
 
 const MainInfo = (props: { spin: number }) => {
 
-    const [isDomainModalOpen, setIsDomainModalOpen] = useState(false)
+    const [giftModalStatus, setGiftModalStatus] = useState(false)
 
     return (
         <div className="px-4 mb-[75px] space-y-[6px] flex-shrink-0">
@@ -35,13 +35,8 @@ const MainInfo = (props: { spin: number }) => {
                 </div>
             </div>
 
-            <button onClick={() => setIsDomainModalOpen(true)}>Modal</button>
-            <Modal
-                fullSize={false}
-                isOpen={isDomainModalOpen}
-                onClose={() => setIsDomainModalOpen(false)}>
-                111
-            </Modal>
+            <button onClick={() => setGiftModalStatus(true)}>Modal</button>
+            <GiftModal isOpen={giftModalStatus} onAction={(status) => setGiftModalStatus(status)}/>
 
         </div>
     );

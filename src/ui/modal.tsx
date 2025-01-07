@@ -54,7 +54,7 @@ const Modal: React.FC<ModalProps> = ({isOpen, onClose, children, fullSize = fals
             onClick={handleBackgroundClick}
         >
             <div
-                className={`max-h-[90vh] overflow-auto bg-white px-10 py-10 rounded-xl shadow-lg transition-all duration-500 ease-in-out ${
+                className={`max-h-[90vh] overflow-auto   rounded-xl shadow-lg transition-all duration-500 ease-in-out ${
                     isVisible
                         ? "scale-100 rotate-0 translate-y-0"
                         : "scale-90 rotate-[-8deg] translate-y-[-50px] opacity-0"
