@@ -63,43 +63,43 @@ const Index: React.FC = () => {
             <div className="fixed inset-0 z-40 bg-[#151515] flex flex-col items-center overflow-hidden opacity-100">
                 <div className="w-full h-full relative">
                     <img
-                        src="https://v2.wbruletka.games/assets/wheel4tc-DsABp7OR.webp"
+                        src="/img/wheel4tc-DsABp7OR.webp"
                         alt="Wheel"
                         className="absolute bottom-[-15%] left-[18%] w-[65vw] z-10 scale-[3] opacity-100"
                         style={{rotate: `${wheelPosition}deg`}}
                     />
                     <img
-                        src="https://v2.wbruletka.games/assets/mainglowc-a7fIHNBM.webp"
+                        src="/img/mainglowc-a7fIHNBM.webp"
                         alt="Main Glow"
                         className="absolute bottom-[10%] z-10 opacity-40 scale-[2.98537]"
                     />
                     <img
-                        src="https://v2.wbruletka.games/assets/bottomglowc-Din2H2OH.webp"
+                        src="/img/bottomglowc-Din2H2OH.webp"
                         alt="Bottom Glow"
                         className="absolute bottom-[-22%] z-20 opacity-10 scale-[1.5] -translate-x-[2%]"
                     />
                     <img
-                        src="https://v2.wbruletka.games/assets/sidesglow-B105IUKD.webp"
+                        src="/img/sidesglow-B105IUKD.webp"
                         alt="Side Glow"
                         className="absolute bottom-[-5%] z-20 opacity-100 scale-[1.5] -translate-x-[2%]"
                     />
                     <img
-                        src="https://v2.wbruletka.games/assets/whiteround-9jIWZWmY.webp"
+                        src="/img/whiteround-9jIWZWmY.webp"
                         alt="White Round Glow"
                         className="absolute bottom-[-15%] z-30 opacity-100 scale-[1.5]"
                     />
                     <img
-                        src="https://v2.wbruletka.games/assets/barrightc-_w0QRczF.webp"
+                        src="/img/barrightc-_w0QRczF.webp"
                         alt="Right Bar"
                         className="absolute bottom-[10%] z-30 opacity-100"
                     />
                     <img
-                        src="https://v2.wbruletka.games/assets/barleftc-D-sldF9Z.webp"
+                        src="/img/barleftc-D-sldF9Z.webp"
                         alt="Left Bar"
                         className="absolute bottom-[10%] z-30 opacity-100"
                     />
                     <img
-                        src="https://v2.wbruletka.games/assets/barmiddlec-BsZwhlmY.webp"
+                        src="/img/barmiddlec-BsZwhlmY.webp"
                         alt="Middle Bar"
                         className="absolute bottom-[10%] z-30 opacity-100"
                     />
@@ -108,7 +108,7 @@ const Index: React.FC = () => {
                         <div className="mt-[3vh]">
                             <div className="flex translate-x-3 opacity-100">
                                 <img
-                                    src="https://v2.wbruletka.games/assets/LoadingLogo-BDDCejQd.webp"
+                                    src="/img/LoadingLogo-BDDCejQd.webp"
                                     alt="Logo"
                                     className="w-full h-full scale-[1.5] -translate-x-[3%]"
                                 />
