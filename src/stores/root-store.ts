@@ -22,8 +22,8 @@ export class RootStore {
         makeAutoObservable(this)
     }
 
-    hydrate() {
-
+    hydrate(initialData?: RootStoreHydration) {
+        console.log(initialData)
     }
 
 }
