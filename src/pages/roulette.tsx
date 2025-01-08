@@ -12,14 +12,14 @@ const Roulette = () => {
     // spin
     useEffect(() => {
         const spinInLocalStorage = localStorage.getItem("spin")
-        setSpin(spinInLocalStorage ? +`${spinInLocalStorage}` : 100)
+        setSpin(spinInLocalStorage ? +`${spinInLocalStorage}` : 1)
     }, []);
 
 
     // // spin FIXME: uncomment in prod
-    // useEffect(() => {
-    //     localStorage.setItem("spin", `${spin}`)
-    // }, [spin]);
+    useEffect(() => {
+        localStorage.setItem("spin", `${spin}`)
+    }, [spin]);
 
     const rouletteClickHandler = () => {
         setSpin(spin - 1)
