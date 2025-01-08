@@ -1,6 +1,7 @@
 import PageLayout from "@/layout/page-layout";
+import {observer} from "mobx-react-lite";
 
-const Tasks = () => {
+const Tasks = observer(() => {
 
     return <PageLayout>
 
@@ -485,6 +486,6 @@ const Tasks = () => {
 
     </PageLayout>
 
-}
+})
 
 export default Tasks
