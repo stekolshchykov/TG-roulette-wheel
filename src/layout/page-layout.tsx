@@ -10,7 +10,7 @@ const PageLayout = (props: { children?: React.ReactNode }) => {
         <>
             <main className="relative z-10 text-white font-proxima">
                 {/* Фоновый контейнер */}
-                <div className="fixed inset-0 -z-10 bg-[#151515] overflow-hidden">
+                <div className="fixed inset-0 -z-10 bg-[#151515] overflow-y-auto">
                     {isMainPage ? (
                         // Фон для главной страницы
                         <div className="absolute inset-0 pointer-events-none">

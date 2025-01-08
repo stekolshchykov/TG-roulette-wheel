@@ -1,7 +1,42 @@
 import PageLayout from "@/layout/page-layout";
+import {useRootStore} from "@/providers/RootStoreProvider";
+import {TaskDataI} from "@/type";
 import {observer} from "mobx-react-lite";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+
+const Task = (props: TaskDataI) => {
+
+    return <div
+        className="relative border-[0.68px] border-[#202023] rounded-[16.34px] h-[55px] flex items-center justify-between px-1">
+        <div className="flex items-center ">
+            <div className="relative w-20 h-20">
+                <div className="absolute -left-3">
+                    <Image src={"/icon/question2.svg"} alt={""} height={76} width={76}/>
+                </div>
+            </div>
+            <div className="flex flex-col"><p className="text-[13px] font-bold leading-[16px]">
+                {props.title}
+            </p>
+                <p className="text-[11px] leading-[11px] opacity-50">+{props.reward} Вращение</p>
+            </div>
+        </div>
+        <button className="p-px bg-gradient-to-t from-transparent from-70% to-[#F03AC2] rounded-xl">
+            <div
+                className="flex items-center gap-x-1 bg-gradient-to-b from-[#E204A9] to-[#FE5FD6] px-4 h-8 rounded-xl">
+                <Link href={props.link} className="font-bold text-xs leading-[110%] tracking-[-2%] whitespace-nowrap">
+                    Перейти
+                </Link>
+            </div>
+        </button>
+    </div>
+
+}
 
 const Tasks = observer(() => {
+
+    const {tasksStore} = useRootStore()
 
     return <PageLayout>
 
@@ -11,46 +46,10 @@ const Tasks = observer(() => {
             вращение</p></div>
 
         <div className=" border px-5 py-4 flex flex-col border-[#202023] mt-5 rounded-[24px]">
-            <div className="flex items-center justify-between"><p className="text-[20px] font-bold leading-[24px]">Карта
-                от партнера</p>
-                {/*<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"*/}
-                {/*     xmlns:xlink="http://www.w3.org/1999/xlink">*/}
-                {/*    <desc>*/}
-                {/*        Created with Pixso.*/}
-                {/*    </desc>*/}
-                {/*    <defs>*/}
-                {/*        <linearGradient x1="10" y1="0" x2="10" y2="20" id="paint_linear_1_463_0"*/}
-                {/*                        gradientUnits="userSpaceOnUse">*/}
-                {/*            <stop stop-color="#69D3FF"></stop>*/}
-                {/*            <stop offset="1" stop-color="#00A4E8"></stop>*/}
-                {/*        </linearGradient>*/}
-                {/*        <linearGradient x1="10.255161" y1="0" x2="10.255161" y2="19.710983" id="paint_linear_1_463_1"*/}
-                {/*                        gradientUnits="userSpaceOnUse">*/}
-                {/*            <stop stop-color="#FFB500"></stop>*/}
-                {/*            <stop offset="1" stop-color="#F3BA2F"></stop>*/}
-                {/*        </linearGradient>*/}
-                {/*        <linearGradient x1="10" y1="20" x2="10" y2="0" id="paint_linear_1_463_2"*/}
-                {/*                        gradientUnits="userSpaceOnUse">*/}
-                {/*            <stop stop-color="#FF60D7"></stop>*/}
-                {/*            <stop offset="1" stop-color="#E100A8"></stop>*/}
-                {/*        </linearGradient>*/}
-                {/*    </defs>*/}
-                {/*    <rect id="Rectangle 34625118" rx="10" width="20" height="20" fill="#D9D9D9" fill-opacity="1"></rect>*/}
-                {/*    <rect id="Rectangle 34625118" rx="10" width="20" height="20" fill="url(#paint_linear_1_463_0)"*/}
-                {/*          fill-opacity="0"></rect>*/}
-                {/*    <rect id="Rectangle 34625118" rx="10" width="20" height="20" fill="url(#paint_linear_1_463_1)"*/}
-                {/*          fill-opacity="1"></rect>*/}
-                {/*    <rect id="Rectangle 34625118" rx="10" width="20" height="20" fill="#151517" fill-opacity="1"></rect>*/}
-                {/*    <rect id="Rectangle 34625118" rx="10" width="20" height="20" fill="url(#paint_linear_1_463_2)"*/}
-                {/*          fill-opacity="1"></rect>*/}
-                {/*    <rect id="Rectangle 34625118" x="0.276367" y="0.276382" rx="9.723619" width="19.447237"*/}
-                {/*          height="19.447237" stroke="#050505" stroke-opacity="0" stroke-width="0.552764"></rect>*/}
-                {/*    <rect id="Rectangle 34625118" x="0.276367" y="0.276382" rx="9.723619" width="19.447237"*/}
-                {/*          height="19.447237" stroke="#FF72DB" stroke-opacity="0.5" stroke-width="0.552764"></rect>*/}
-                {/*    <path id="?"*/}
-                {/*          d="M8.67 10.09C8.67 10.58 8.84 10.99 9.13 11.31L10.64 10.87C10.5 10.74 10.39 10.51 10.39 10.29C10.39 9.12 12.71 8.97 12.71 6.94C12.71 5.65 11.61 4.75 9.82 4.75C8.63 4.75 7.52 5.24 6.79 6.1L7.91 7.36C8.34 6.85 8.92 6.5 9.62 6.5C10.38 6.5 10.7 6.86 10.7 7.29C10.7 8.25 8.67 8.44 8.67 10.09ZM8.67 13.17C8.67 13.78 9.19 14.29 9.8 14.29C10.41 14.29 10.92 13.78 10.92 13.17C10.92 12.56 10.41 12.05 9.8 12.05C9.19 12.05 8.67 12.56 8.67 13.17Z"*/}
-                {/*          fill="#FFFFFF" fill-opacity="1" fill-rule="evenodd"></path>*/}
-                {/*</svg>*/}
+            <div className="flex items-center justify-between">
+                <p className="text-[20px] font-bold leading-[24px]">
+                    Карта от партнера
+                </p>
             </div>
             <p className="text-[12px] leading-[15px] opacity-20 font-normal">Оформи банковскую карту по ссылке и
                 получи <br/>деньги на покупки в маркетплейсах и т.п</p>
@@ -78,409 +77,16 @@ const Tasks = observer(() => {
             </div>
         </div>
 
-        <div className="rounded-t-[24px] border-t border-[#202023] mt-5 h-[430px] px-5"><p
+        <div className="rounded-t-[24px] border-t border-[#202023] mt-5 h-full px-5 mb-[70px]"><p
             className="text-[20px] font-bold leading-[24px] mt-3">Задания</p>
-            <div className="flex flex-col gap-y-2 mt-2">
-                <div
-                    className="relative border-[0.68px] border-[#202023] rounded-[16.34px] h-[55px] flex items-center justify-between px-4">
-                    <div className="flex items-center gap-x-3">
-                        <div className="relative w-12 h-12">
-                            <div className="absolute -top-4 -left-4 ">
-                                {/*<svg width="76.599976" height="76.366302" viewBox="0 0 76.6 76.3663" fill="none"*/}
-                                {/*     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">*/}
-                                {/*    <desc>*/}
-                                {/*        Created with Pixso.*/}
-                                {/*    </desc>*/}
-                                {/*    <defs>*/}
-                                {/*        <filter id="filter_1_523_dd" x="0" y="0" width="76.599976" height="76.366302"*/}
-                                {/*                filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">*/}
-                                {/*            <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>*/}
-                                {/*            <feColorMatrix in="SourceAlpha" type="matrix"*/}
-                                {/*                           values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"*/}
-                                {/*                           result="hardAlpha"></feColorMatrix>*/}
-                                {/*            <feOffset dx="0" dy="0"></feOffset>*/}
-                                {/*            <feGaussianBlur stdDeviation="5.93333"></feGaussianBlur>*/}
-                                {/*            <feComposite in2="hardAlpha" operator="out" k2="-1" k3="1"></feComposite>*/}
-                                {/*            <feColorMatrix type="matrix"*/}
-                                {/*                           values="0 0 0 0 0.88235 0 0 0 0 0 0 0 0 0 0.65882 0 0 0 0.25 0"></feColorMatrix>*/}
-                                {/*            <feBlend mode="normal" in2="BackgroundImageFix"*/}
-                                {/*                     result="effect_dropShadow_1"></feBlend>*/}
-                                {/*            <feBlend mode="normal" in="SourceGraphic" in2="effect_dropShadow_1"*/}
-                                {/*                     result="shape"></feBlend>*/}
-                                {/*        </filter>*/}
-                                {/*        <linearGradient x1="38.299988" y1="17.799988" x2="38.299988" y2="58.566311"*/}
-                                {/*                        id="paint_linear_1_524_0" gradientUnits="userSpaceOnUse">*/}
-                                {/*            <stop stop-color="#69D3FF"></stop>*/}
-                                {/*            <stop offset="1" stop-color="#00A4E8"></stop>*/}
-                                {/*        </linearGradient>*/}
-                                {/*        <linearGradient x1="38.823067" y1="17.799988" x2="38.823067" y2="57.977203"*/}
-                                {/*                        id="paint_linear_1_524_1" gradientUnits="userSpaceOnUse">*/}
-                                {/*            <stop stop-color="#FFB500"></stop>*/}
-                                {/*            <stop offset="1" stop-color="#F3BA2F"></stop>*/}
-                                {/*        </linearGradient>*/}
-                                {/*        <linearGradient x1="38.299984" y1="58.566311" x2="38.299984" y2="17.799988"*/}
-                                {/*                        id="paint_linear_1_524_2" gradientUnits="userSpaceOnUse">*/}
-                                {/*            <stop stop-color="#FF60D7"></stop>*/}
-                                {/*            <stop offset="1" stop-color="#E100A8"></stop>*/}
-                                {/*        </linearGradient>*/}
-                                {/*    </defs>*/}
-                                {/*    <g filter="url(#filter_1_523_dd)">*/}
-                                {/*        <rect id="Rectangle 34625118" x="17.799988" y="17.799988" rx="20.383162"*/}
-                                {/*              width="41" height="40.766323" fill="#D9D9D9" fill-opacity="1"></rect>*/}
-                                {/*        <rect id="Rectangle 34625118" x="17.799988" y="17.799988" rx="20.383162"*/}
-                                {/*              width="41" height="40.766323" fill="url(#paint_linear_1_524_0)"*/}
-                                {/*              fill-opacity="0"></rect>*/}
-                                {/*        <rect id="Rectangle 34625118" x="17.799988" y="17.799988" rx="20.383162"*/}
-                                {/*              width="41" height="40.766323" fill="url(#paint_linear_1_524_1)"*/}
-                                {/*              fill-opacity="1"></rect>*/}
-                                {/*        <rect id="Rectangle 34625118" x="17.799988" y="17.799988" rx="20.383162"*/}
-                                {/*              width="41" height="40.766323" fill="#151517" fill-opacity="1"></rect>*/}
-                                {/*        <rect id="Rectangle 34625118" x="17.799988" y="17.799988" rx="20.383162"*/}
-                                {/*              width="41" height="40.766323" fill="url(#paint_linear_1_524_2)"*/}
-                                {/*              fill-opacity="1"></rect>*/}
-                                {/*        <rect id="Rectangle 34625118" x="18.363342" y="18.363342" rx="19.819807"*/}
-                                {/*              width="39.873291" height="39.639614" stroke="#050505" stroke-opacity="0"*/}
-                                {/*              stroke-width="1.126708"></rect>*/}
-                                {/*        <rect id="Rectangle 34625118" x="18.363342" y="18.363342" rx="19.819807"*/}
-                                {/*              width="39.873291" height="39.639614" stroke="#FF72DB" stroke-opacity="0.5"*/}
-                                {/*              stroke-width="1.126708"></rect>*/}
-                                {/*        <path id="?"*/}
-                                {/*              d="M36.02 42.21L39.02 42.21C39.02 41.7 39.18 41.2 39.49 40.72C39.81 40.23 40.19 39.78 40.64 39.36C41.09 38.92 41.55 38.48 42 38.03C42.45 37.57 42.83 37.03 43.15 36.38C43.46 35.74 43.62 35.06 43.62 34.34C43.62 32.78 43.05 31.55 41.92 30.66Q41.44 30.28 40.91 30.01Q39.58 29.33 37.9 29.33Q36.33 29.33 35.01 29.91Q34.57 30.1 34.16 30.35Q33.45 30.8 32.92 31.4Q32.23 32.17 31.84 33.2L34.43 34.66Q34.73 33.76 35.34 33.18Q35.51 33.02 35.7 32.88C36.3 32.46 37 32.25 37.82 32.25C38.67 32.25 39.35 32.46 39.86 32.86Q40.13 33.08 40.31 33.36Q40.61 33.85 40.61 34.53C40.61 35.03 40.46 35.53 40.14 36.02Q39.67 36.75 39 37.37C38.54 37.77 38.09 38.2 37.64 38.65C37.18 39.09 36.8 39.62 36.49 40.25C36.17 40.86 36.02 41.51 36.02 42.21ZM38.92 44.92C38.53 44.54 38.07 44.35 37.53 44.35Q37.08 44.35 36.7 44.52Q36.38 44.66 36.12 44.92Q35.87 45.19 35.73 45.51Q35.57 45.87 35.57 46.31C35.57 46.85 35.77 47.31 36.15 47.69C36.53 48.07 36.99 48.26 37.53 48.26Q37.93 48.26 38.28 48.12Q38.63 47.98 38.92 47.69C39.3 47.31 39.49 46.85 39.49 46.31Q39.49 45.91 39.35 45.56Q39.21 45.21 38.92 44.92Z"*/}
-                                {/*              fill="#FFFFFF" fill-opacity="1" fill-rule="evenodd"></path>*/}
-                                {/*    </g>*/}
-                                {/*</svg>*/}
-                            </div>
-                        </div>
-                        <div className="flex flex-col"><p className="text-[13px] font-bold leading-[16px]">Подпишись на
-                            канал</p><p className="text-[11px] leading-[11px] opacity-50">+1 Вращение</p></div>
-                    </div>
-                    <button className="p-px bg-gradient-to-t from-transparent from-70% to-[#F03AC2] rounded-xl">
-                        <div
-                            className="flex items-center gap-x-1 bg-gradient-to-b from-[#E204A9] to-[#FE5FD6] px-4 h-8 rounded-xl">
-                            <p className="font-bold text-xs leading-[110%] tracking-[-2%] whitespace-nowrap">Перейти</p>
-                        </div>
-                    </button>
-                </div>
-                <div
-                    className="relative border-[0.68px] border-[#202023] rounded-[16.34px] h-[55px] flex items-center justify-between px-4">
-                    <div className="flex items-center gap-x-3">
-                        <div className="relative w-12 h-12">
-                            <div className="absolute -top-4 -left-4 ">
-                                {/*<svg width="76.599976" height="76.366302" viewBox="0 0 76.6 76.3663" fill="none"*/}
-                                {/*     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">*/}
-                                {/*    <desc>*/}
-                                {/*        Created with Pixso.*/}
-                                {/*    </desc>*/}
-                                {/*    <defs>*/}
-                                {/*        <filter id="filter_1_523_dd" x="0" y="0" width="76.599976" height="76.366302"*/}
-                                {/*                filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">*/}
-                                {/*            <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>*/}
-                                {/*            <feColorMatrix in="SourceAlpha" type="matrix"*/}
-                                {/*                           values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"*/}
-                                {/*                           result="hardAlpha"></feColorMatrix>*/}
-                                {/*            <feOffset dx="0" dy="0"></feOffset>*/}
-                                {/*            <feGaussianBlur stdDeviation="5.93333"></feGaussianBlur>*/}
-                                {/*            <feComposite in2="hardAlpha" operator="out" k2="-1" k3="1"></feComposite>*/}
-                                {/*            <feColorMatrix type="matrix"*/}
-                                {/*                           values="0 0 0 0 0.88235 0 0 0 0 0 0 0 0 0 0.65882 0 0 0 0.25 0"></feColorMatrix>*/}
-                                {/*            <feBlend mode="normal" in2="BackgroundImageFix"*/}
-                                {/*                     result="effect_dropShadow_1"></feBlend>*/}
-                                {/*            <feBlend mode="normal" in="SourceGraphic" in2="effect_dropShadow_1"*/}
-                                {/*                     result="shape"></feBlend>*/}
-                                {/*        </filter>*/}
-                                {/*        <linearGradient x1="38.299988" y1="17.799988" x2="38.299988" y2="58.566311"*/}
-                                {/*                        id="paint_linear_1_524_0" gradientUnits="userSpaceOnUse">*/}
-                                {/*            <stop stop-color="#69D3FF"></stop>*/}
-                                {/*            <stop offset="1" stop-color="#00A4E8"></stop>*/}
-                                {/*        </linearGradient>*/}
-                                {/*        <linearGradient x1="38.823067" y1="17.799988" x2="38.823067" y2="57.977203"*/}
-                                {/*                        id="paint_linear_1_524_1" gradientUnits="userSpaceOnUse">*/}
-                                {/*            <stop stop-color="#FFB500"></stop>*/}
-                                {/*            <stop offset="1" stop-color="#F3BA2F"></stop>*/}
-                                {/*        </linearGradient>*/}
-                                {/*        <linearGradient x1="38.299984" y1="58.566311" x2="38.299984" y2="17.799988"*/}
-                                {/*                        id="paint_linear_1_524_2" gradientUnits="userSpaceOnUse">*/}
-                                {/*            <stop stop-color="#FF60D7"></stop>*/}
-                                {/*            <stop offset="1" stop-color="#E100A8"></stop>*/}
-                                {/*        </linearGradient>*/}
-                                {/*    </defs>*/}
-                                {/*    <g filter="url(#filter_1_523_dd)">*/}
-                                {/*        <rect id="Rectangle 34625118" x="17.799988" y="17.799988" rx="20.383162"*/}
-                                {/*              width="41" height="40.766323" fill="#D9D9D9" fill-opacity="1"></rect>*/}
-                                {/*        <rect id="Rectangle 34625118" x="17.799988" y="17.799988" rx="20.383162"*/}
-                                {/*              width="41" height="40.766323" fill="url(#paint_linear_1_524_0)"*/}
-                                {/*              fill-opacity="0"></rect>*/}
-                                {/*        <rect id="Rectangle 34625118" x="17.799988" y="17.799988" rx="20.383162"*/}
-                                {/*              width="41" height="40.766323" fill="url(#paint_linear_1_524_1)"*/}
-                                {/*              fill-opacity="1"></rect>*/}
-                                {/*        <rect id="Rectangle 34625118" x="17.799988" y="17.799988" rx="20.383162"*/}
-                                {/*              width="41" height="40.766323" fill="#151517" fill-opacity="1"></rect>*/}
-                                {/*        <rect id="Rectangle 34625118" x="17.799988" y="17.799988" rx="20.383162"*/}
-                                {/*              width="41" height="40.766323" fill="url(#paint_linear_1_524_2)"*/}
-                                {/*              fill-opacity="1"></rect>*/}
-                                {/*        <rect id="Rectangle 34625118" x="18.363342" y="18.363342" rx="19.819807"*/}
-                                {/*              width="39.873291" height="39.639614" stroke="#050505" stroke-opacity="0"*/}
-                                {/*              stroke-width="1.126708"></rect>*/}
-                                {/*        <rect id="Rectangle 34625118" x="18.363342" y="18.363342" rx="19.819807"*/}
-                                {/*              width="39.873291" height="39.639614" stroke="#FF72DB" stroke-opacity="0.5"*/}
-                                {/*              stroke-width="1.126708"></rect>*/}
-                                {/*        <path id="?"*/}
-                                {/*              d="M36.02 42.21L39.02 42.21C39.02 41.7 39.18 41.2 39.49 40.72C39.81 40.23 40.19 39.78 40.64 39.36C41.09 38.92 41.55 38.48 42 38.03C42.45 37.57 42.83 37.03 43.15 36.38C43.46 35.74 43.62 35.06 43.62 34.34C43.62 32.78 43.05 31.55 41.92 30.66Q41.44 30.28 40.91 30.01Q39.58 29.33 37.9 29.33Q36.33 29.33 35.01 29.91Q34.57 30.1 34.16 30.35Q33.45 30.8 32.92 31.4Q32.23 32.17 31.84 33.2L34.43 34.66Q34.73 33.76 35.34 33.18Q35.51 33.02 35.7 32.88C36.3 32.46 37 32.25 37.82 32.25C38.67 32.25 39.35 32.46 39.86 32.86Q40.13 33.08 40.31 33.36Q40.61 33.85 40.61 34.53C40.61 35.03 40.46 35.53 40.14 36.02Q39.67 36.75 39 37.37C38.54 37.77 38.09 38.2 37.64 38.65C37.18 39.09 36.8 39.62 36.49 40.25C36.17 40.86 36.02 41.51 36.02 42.21ZM38.92 44.92C38.53 44.54 38.07 44.35 37.53 44.35Q37.08 44.35 36.7 44.52Q36.38 44.66 36.12 44.92Q35.87 45.19 35.73 45.51Q35.57 45.87 35.57 46.31C35.57 46.85 35.77 47.31 36.15 47.69C36.53 48.07 36.99 48.26 37.53 48.26Q37.93 48.26 38.28 48.12Q38.63 47.98 38.92 47.69C39.3 47.31 39.49 46.85 39.49 46.31Q39.49 45.91 39.35 45.56Q39.21 45.21 38.92 44.92Z"*/}
-                                {/*              fill="#FFFFFF" fill-opacity="1" fill-rule="evenodd"></path>*/}
-                                {/*    </g>*/}
-                                {/*</svg>*/}
-                            </div>
-                        </div>
-                        <div className="flex flex-col"><p className="text-[13px] font-bold leading-[16px]">Подпишись на
-                            канал</p><p className="text-[11px] leading-[11px] opacity-50">+1 Вращение</p></div>
-                    </div>
-                    <button className="p-px bg-gradient-to-t from-transparent from-70% to-[#F03AC2] rounded-xl">
-                        <div
-                            className="flex items-center gap-x-1 bg-gradient-to-b from-[#E204A9] to-[#FE5FD6] px-4 h-8 rounded-xl">
-                            <p className="font-bold text-xs leading-[110%] tracking-[-2%] whitespace-nowrap">Перейти</p>
-                        </div>
-                    </button>
-                </div>
-                <div
-                    className="relative border-[0.68px] border-[#202023] rounded-[16.34px] h-[55px] flex items-center justify-between px-4">
-                    <div className="flex items-center gap-x-3">
-                        <div className="relative w-12 h-12">
-                            <div className="absolute -top-4 -left-4 ">
-                                {/*<svg width="76.599976" height="76.366302" viewBox="0 0 76.6 76.3663" fill="none"*/}
-                                {/*     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">*/}
-                                {/*    <desc>*/}
-                                {/*        Created with Pixso.*/}
-                                {/*    </desc>*/}
-                                {/*    <defs>*/}
-                                {/*        <filter id="filter_1_523_dd" x="0" y="0" width="76.599976" height="76.366302"*/}
-                                {/*                filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">*/}
-                                {/*            <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>*/}
-                                {/*            <feColorMatrix in="SourceAlpha" type="matrix"*/}
-                                {/*                           values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"*/}
-                                {/*                           result="hardAlpha"></feColorMatrix>*/}
-                                {/*            <feOffset dx="0" dy="0"></feOffset>*/}
-                                {/*            <feGaussianBlur stdDeviation="5.93333"></feGaussianBlur>*/}
-                                {/*            <feComposite in2="hardAlpha" operator="out" k2="-1" k3="1"></feComposite>*/}
-                                {/*            <feColorMatrix type="matrix"*/}
-                                {/*                           values="0 0 0 0 0.88235 0 0 0 0 0 0 0 0 0 0.65882 0 0 0 0.25 0"></feColorMatrix>*/}
-                                {/*            <feBlend mode="normal" in2="BackgroundImageFix"*/}
-                                {/*                     result="effect_dropShadow_1"></feBlend>*/}
-                                {/*            <feBlend mode="normal" in="SourceGraphic" in2="effect_dropShadow_1"*/}
-                                {/*                     result="shape"></feBlend>*/}
-                                {/*        </filter>*/}
-                                {/*        <linearGradient x1="38.299988" y1="17.799988" x2="38.299988" y2="58.566311"*/}
-                                {/*                        id="paint_linear_1_524_0" gradientUnits="userSpaceOnUse">*/}
-                                {/*            <stop stop-color="#69D3FF"></stop>*/}
-                                {/*            <stop offset="1" stop-color="#00A4E8"></stop>*/}
-                                {/*        </linearGradient>*/}
-                                {/*        <linearGradient x1="38.823067" y1="17.799988" x2="38.823067" y2="57.977203"*/}
-                                {/*                        id="paint_linear_1_524_1" gradientUnits="userSpaceOnUse">*/}
-                                {/*            <stop stop-color="#FFB500"></stop>*/}
-                                {/*            <stop offset="1" stop-color="#F3BA2F"></stop>*/}
-                                {/*        </linearGradient>*/}
-                                {/*        <linearGradient x1="38.299984" y1="58.566311" x2="38.299984" y2="17.799988"*/}
-                                {/*                        id="paint_linear_1_524_2" gradientUnits="userSpaceOnUse">*/}
-                                {/*            <stop stop-color="#FF60D7"></stop>*/}
-                                {/*            <stop offset="1" stop-color="#E100A8"></stop>*/}
-                                {/*        </linearGradient>*/}
-                                {/*    </defs>*/}
-                                {/*    <g filter="url(#filter_1_523_dd)">*/}
-                                {/*        <rect id="Rectangle 34625118" x="17.799988" y="17.799988" rx="20.383162"*/}
-                                {/*              width="41" height="40.766323" fill="#D9D9D9" fill-opacity="1"></rect>*/}
-                                {/*        <rect id="Rectangle 34625118" x="17.799988" y="17.799988" rx="20.383162"*/}
-                                {/*              width="41" height="40.766323" fill="url(#paint_linear_1_524_0)"*/}
-                                {/*              fill-opacity="0"></rect>*/}
-                                {/*        <rect id="Rectangle 34625118" x="17.799988" y="17.799988" rx="20.383162"*/}
-                                {/*              width="41" height="40.766323" fill="url(#paint_linear_1_524_1)"*/}
-                                {/*              fill-opacity="1"></rect>*/}
-                                {/*        <rect id="Rectangle 34625118" x="17.799988" y="17.799988" rx="20.383162"*/}
-                                {/*              width="41" height="40.766323" fill="#151517" fill-opacity="1"></rect>*/}
-                                {/*        <rect id="Rectangle 34625118" x="17.799988" y="17.799988" rx="20.383162"*/}
-                                {/*              width="41" height="40.766323" fill="url(#paint_linear_1_524_2)"*/}
-                                {/*              fill-opacity="1"></rect>*/}
-                                {/*        <rect id="Rectangle 34625118" x="18.363342" y="18.363342" rx="19.819807"*/}
-                                {/*              width="39.873291" height="39.639614" stroke="#050505" stroke-opacity="0"*/}
-                                {/*              stroke-width="1.126708"></rect>*/}
-                                {/*        <rect id="Rectangle 34625118" x="18.363342" y="18.363342" rx="19.819807"*/}
-                                {/*              width="39.873291" height="39.639614" stroke="#FF72DB" stroke-opacity="0.5"*/}
-                                {/*              stroke-width="1.126708"></rect>*/}
-                                {/*        <path id="?"*/}
-                                {/*              d="M36.02 42.21L39.02 42.21C39.02 41.7 39.18 41.2 39.49 40.72C39.81 40.23 40.19 39.78 40.64 39.36C41.09 38.92 41.55 38.48 42 38.03C42.45 37.57 42.83 37.03 43.15 36.38C43.46 35.74 43.62 35.06 43.62 34.34C43.62 32.78 43.05 31.55 41.92 30.66Q41.44 30.28 40.91 30.01Q39.58 29.33 37.9 29.33Q36.33 29.33 35.01 29.91Q34.57 30.1 34.16 30.35Q33.45 30.8 32.92 31.4Q32.23 32.17 31.84 33.2L34.43 34.66Q34.73 33.76 35.34 33.18Q35.51 33.02 35.7 32.88C36.3 32.46 37 32.25 37.82 32.25C38.67 32.25 39.35 32.46 39.86 32.86Q40.13 33.08 40.31 33.36Q40.61 33.85 40.61 34.53C40.61 35.03 40.46 35.53 40.14 36.02Q39.67 36.75 39 37.37C38.54 37.77 38.09 38.2 37.64 38.65C37.18 39.09 36.8 39.62 36.49 40.25C36.17 40.86 36.02 41.51 36.02 42.21ZM38.92 44.92C38.53 44.54 38.07 44.35 37.53 44.35Q37.08 44.35 36.7 44.52Q36.38 44.66 36.12 44.92Q35.87 45.19 35.73 45.51Q35.57 45.87 35.57 46.31C35.57 46.85 35.77 47.31 36.15 47.69C36.53 48.07 36.99 48.26 37.53 48.26Q37.93 48.26 38.28 48.12Q38.63 47.98 38.92 47.69C39.3 47.31 39.49 46.85 39.49 46.31Q39.49 45.91 39.35 45.56Q39.21 45.21 38.92 44.92Z"*/}
-                                {/*              fill="#FFFFFF" fill-opacity="1" fill-rule="evenodd"></path>*/}
-                                {/*    </g>*/}
-                                {/*</svg>*/}
-                            </div>
-                        </div>
-                        <div className="flex flex-col"><p className="text-[13px] font-bold leading-[16px]">Подпишись на
-                            канал</p><p className="text-[11px] leading-[11px] opacity-50">+1 Вращение</p></div>
-                    </div>
-                    <button className="p-px bg-gradient-to-t from-transparent from-70% to-[#F03AC2] rounded-xl">
-                        <div
-                            className="flex items-center gap-x-1 bg-gradient-to-b from-[#E204A9] to-[#FE5FD6] px-4 h-8 rounded-xl">
-                            <p className="font-bold text-xs leading-[110%] tracking-[-2%] whitespace-nowrap">Перейти</p>
-                        </div>
-                    </button>
-                </div>
-                <div
-                    className="relative border-[0.68px] border-[#202023] rounded-[16.34px] h-[55px] flex items-center justify-between px-4">
-                    <div className="flex items-center gap-x-3">
-                        <div className="relative w-12 h-12">
-                            <div className="absolute -top-4 -left-4 ">
-                                {/*<svg width="76.599976" height="76.366302" viewBox="0 0 76.6 76.3663" fill="none"*/}
-                                {/*     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">*/}
-                                {/*    <desc>*/}
-                                {/*        Created with Pixso.*/}
-                                {/*    </desc>*/}
-                                {/*    <defs>*/}
-                                {/*        <filter id="filter_1_523_dd" x="0" y="0" width="76.599976" height="76.366302"*/}
-                                {/*                filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">*/}
-                                {/*            <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>*/}
-                                {/*            <feColorMatrix in="SourceAlpha" type="matrix"*/}
-                                {/*                           values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"*/}
-                                {/*                           result="hardAlpha"></feColorMatrix>*/}
-                                {/*            <feOffset dx="0" dy="0"></feOffset>*/}
-                                {/*            <feGaussianBlur stdDeviation="5.93333"></feGaussianBlur>*/}
-                                {/*            <feComposite in2="hardAlpha" operator="out" k2="-1" k3="1"></feComposite>*/}
-                                {/*            <feColorMatrix type="matrix"*/}
-                                {/*                           values="0 0 0 0 0.88235 0 0 0 0 0 0 0 0 0 0.65882 0 0 0 0.25 0"></feColorMatrix>*/}
-                                {/*            <feBlend mode="normal" in2="BackgroundImageFix"*/}
-                                {/*                     result="effect_dropShadow_1"></feBlend>*/}
-                                {/*            <feBlend mode="normal" in="SourceGraphic" in2="effect_dropShadow_1"*/}
-                                {/*                     result="shape"></feBlend>*/}
-                                {/*        </filter>*/}
-                                {/*        <linearGradient x1="38.299988" y1="17.799988" x2="38.299988" y2="58.566311"*/}
-                                {/*                        id="paint_linear_1_524_0" gradientUnits="userSpaceOnUse">*/}
-                                {/*            <stop stop-color="#69D3FF"></stop>*/}
-                                {/*            <stop offset="1" stop-color="#00A4E8"></stop>*/}
-                                {/*        </linearGradient>*/}
-                                {/*        <linearGradient x1="38.823067" y1="17.799988" x2="38.823067" y2="57.977203"*/}
-                                {/*                        id="paint_linear_1_524_1" gradientUnits="userSpaceOnUse">*/}
-                                {/*            <stop stop-color="#FFB500"></stop>*/}
-                                {/*            <stop offset="1" stop-color="#F3BA2F"></stop>*/}
-                                {/*        </linearGradient>*/}
-                                {/*        <linearGradient x1="38.299984" y1="58.566311" x2="38.299984" y2="17.799988"*/}
-                                {/*                        id="paint_linear_1_524_2" gradientUnits="userSpaceOnUse">*/}
-                                {/*            <stop stop-color="#FF60D7"></stop>*/}
-                                {/*            <stop offset="1" stop-color="#E100A8"></stop>*/}
-                                {/*        </linearGradient>*/}
-                                {/*    </defs>*/}
-                                {/*    <g filter="url(#filter_1_523_dd)">*/}
-                                {/*        <rect id="Rectangle 34625118" x="17.799988" y="17.799988" rx="20.383162"*/}
-                                {/*              width="41" height="40.766323" fill="#D9D9D9" fill-opacity="1"></rect>*/}
-                                {/*        <rect id="Rectangle 34625118" x="17.799988" y="17.799988" rx="20.383162"*/}
-                                {/*              width="41" height="40.766323" fill="url(#paint_linear_1_524_0)"*/}
-                                {/*              fill-opacity="0"></rect>*/}
-                                {/*        <rect id="Rectangle 34625118" x="17.799988" y="17.799988" rx="20.383162"*/}
-                                {/*              width="41" height="40.766323" fill="url(#paint_linear_1_524_1)"*/}
-                                {/*              fill-opacity="1"></rect>*/}
-                                {/*        <rect id="Rectangle 34625118" x="17.799988" y="17.799988" rx="20.383162"*/}
-                                {/*              width="41" height="40.766323" fill="#151517" fill-opacity="1"></rect>*/}
-                                {/*        <rect id="Rectangle 34625118" x="17.799988" y="17.799988" rx="20.383162"*/}
-                                {/*              width="41" height="40.766323" fill="url(#paint_linear_1_524_2)"*/}
-                                {/*              fill-opacity="1"></rect>*/}
-                                {/*        <rect id="Rectangle 34625118" x="18.363342" y="18.363342" rx="19.819807"*/}
-                                {/*              width="39.873291" height="39.639614" stroke="#050505" stroke-opacity="0"*/}
-                                {/*              stroke-width="1.126708"></rect>*/}
-                                {/*        <rect id="Rectangle 34625118" x="18.363342" y="18.363342" rx="19.819807"*/}
-                                {/*              width="39.873291" height="39.639614" stroke="#FF72DB" stroke-opacity="0.5"*/}
-                                {/*              stroke-width="1.126708"></rect>*/}
-                                {/*        <path id="?"*/}
-                                {/*              d="M36.02 42.21L39.02 42.21C39.02 41.7 39.18 41.2 39.49 40.72C39.81 40.23 40.19 39.78 40.64 39.36C41.09 38.92 41.55 38.48 42 38.03C42.45 37.57 42.83 37.03 43.15 36.38C43.46 35.74 43.62 35.06 43.62 34.34C43.62 32.78 43.05 31.55 41.92 30.66Q41.44 30.28 40.91 30.01Q39.58 29.33 37.9 29.33Q36.33 29.33 35.01 29.91Q34.57 30.1 34.16 30.35Q33.45 30.8 32.92 31.4Q32.23 32.17 31.84 33.2L34.43 34.66Q34.73 33.76 35.34 33.18Q35.51 33.02 35.7 32.88C36.3 32.46 37 32.25 37.82 32.25C38.67 32.25 39.35 32.46 39.86 32.86Q40.13 33.08 40.31 33.36Q40.61 33.85 40.61 34.53C40.61 35.03 40.46 35.53 40.14 36.02Q39.67 36.75 39 37.37C38.54 37.77 38.09 38.2 37.64 38.65C37.18 39.09 36.8 39.62 36.49 40.25C36.17 40.86 36.02 41.51 36.02 42.21ZM38.92 44.92C38.53 44.54 38.07 44.35 37.53 44.35Q37.08 44.35 36.7 44.52Q36.38 44.66 36.12 44.92Q35.87 45.19 35.73 45.51Q35.57 45.87 35.57 46.31C35.57 46.85 35.77 47.31 36.15 47.69C36.53 48.07 36.99 48.26 37.53 48.26Q37.93 48.26 38.28 48.12Q38.63 47.98 38.92 47.69C39.3 47.31 39.49 46.85 39.49 46.31Q39.49 45.91 39.35 45.56Q39.21 45.21 38.92 44.92Z"*/}
-                                {/*              fill="#FFFFFF" fill-opacity="1" fill-rule="evenodd"></path>*/}
-                                {/*    </g>*/}
-                                {/*</svg>*/}
-                            </div>
-                        </div>
-                        <div className="flex flex-col"><p className="text-[13px] font-bold leading-[16px]">Подпишись на
-                            канал</p><p className="text-[11px] leading-[11px] opacity-50">+1 Вращение</p></div>
-                    </div>
-                    <button className="p-px bg-gradient-to-t from-transparent from-70% to-[#F03AC2] rounded-xl">
-                        <div
-                            className="flex items-center gap-x-1 bg-gradient-to-b from-[#E204A9] to-[#FE5FD6] px-4 h-8 rounded-xl">
-                            <p className="font-bold text-xs leading-[110%] tracking-[-2%] whitespace-nowrap">Перейти</p>
-                        </div>
-                    </button>
-                </div>
-                <div
-                    className="relative border-[0.68px] border-[#202023] rounded-[16.34px] h-[55px] flex items-center justify-between px-4">
-                    <div className="flex items-center gap-x-3">
-                        <div className="relative w-12 h-12">
-                            <div className="absolute -top-4 -left-4 ">
-                                {/*<svg width="76.599976" height="76.366302" viewBox="0 0 76.6 76.3663" fill="none"*/}
-                                {/*     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">*/}
-                                {/*    <desc>*/}
-                                {/*        Created with Pixso.*/}
-                                {/*    </desc>*/}
-                                {/*    <defs>*/}
-                                {/*        <filter id="filter_1_523_dd" x="0" y="0" width="76.599976" height="76.366302"*/}
-                                {/*                filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">*/}
-                                {/*            <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>*/}
-                                {/*            <feColorMatrix in="SourceAlpha" type="matrix"*/}
-                                {/*                           values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"*/}
-                                {/*                           result="hardAlpha"></feColorMatrix>*/}
-                                {/*            <feOffset dx="0" dy="0"></feOffset>*/}
-                                {/*            <feGaussianBlur stdDeviation="5.93333"></feGaussianBlur>*/}
-                                {/*            <feComposite in2="hardAlpha" operator="out" k2="-1" k3="1"></feComposite>*/}
-                                {/*            <feColorMatrix type="matrix"*/}
-                                {/*                           values="0 0 0 0 0.88235 0 0 0 0 0 0 0 0 0 0.65882 0 0 0 0.25 0"></feColorMatrix>*/}
-                                {/*            <feBlend mode="normal" in2="BackgroundImageFix"*/}
-                                {/*                     result="effect_dropShadow_1"></feBlend>*/}
-                                {/*            <feBlend mode="normal" in="SourceGraphic" in2="effect_dropShadow_1"*/}
-                                {/*                     result="shape"></feBlend>*/}
-                                {/*        </filter>*/}
-                                {/*        <linearGradient x1="38.299988" y1="17.799988" x2="38.299988" y2="58.566311"*/}
-                                {/*                        id="paint_linear_1_524_0" gradientUnits="userSpaceOnUse">*/}
-                                {/*            <stop stop-color="#69D3FF"></stop>*/}
-                                {/*            <stop offset="1" stop-color="#00A4E8"></stop>*/}
-                                {/*        </linearGradient>*/}
-                                {/*        <linearGradient x1="38.823067" y1="17.799988" x2="38.823067" y2="57.977203"*/}
-                                {/*                        id="paint_linear_1_524_1" gradientUnits="userSpaceOnUse">*/}
-                                {/*            <stop stop-color="#FFB500"></stop>*/}
-                                {/*            <stop offset="1" stop-color="#F3BA2F"></stop>*/}
-                                {/*        </linearGradient>*/}
-                                {/*        <linearGradient x1="38.299984" y1="58.566311" x2="38.299984" y2="17.799988"*/}
-                                {/*                        id="paint_linear_1_524_2" gradientUnits="userSpaceOnUse">*/}
-                                {/*            <stop stop-color="#FF60D7"></stop>*/}
-                                {/*            <stop offset="1" stop-color="#E100A8"></stop>*/}
-                                {/*        </linearGradient>*/}
-                                {/*    </defs>*/}
-                                {/*    <g filter="url(#filter_1_523_dd)">*/}
-                                {/*        <rect id="Rectangle 34625118" x="17.799988" y="17.799988" rx="20.383162"*/}
-                                {/*              width="41" height="40.766323" fill="#D9D9D9" fill-opacity="1"></rect>*/}
-                                {/*        <rect id="Rectangle 34625118" x="17.799988" y="17.799988" rx="20.383162"*/}
-                                {/*              width="41" height="40.766323" fill="url(#paint_linear_1_524_0)"*/}
-                                {/*              fill-opacity="0"></rect>*/}
-                                {/*        <rect id="Rectangle 34625118" x="17.799988" y="17.799988" rx="20.383162"*/}
-                                {/*              width="41" height="40.766323" fill="url(#paint_linear_1_524_1)"*/}
-                                {/*              fill-opacity="1"></rect>*/}
-                                {/*        <rect id="Rectangle 34625118" x="17.799988" y="17.799988" rx="20.383162"*/}
-                                {/*              width="41" height="40.766323" fill="#151517" fill-opacity="1"></rect>*/}
-                                {/*        <rect id="Rectangle 34625118" x="17.799988" y="17.799988" rx="20.383162"*/}
-                                {/*              width="41" height="40.766323" fill="url(#paint_linear_1_524_2)"*/}
-                                {/*              fill-opacity="1"></rect>*/}
-                                {/*        <rect id="Rectangle 34625118" x="18.363342" y="18.363342" rx="19.819807"*/}
-                                {/*              width="39.873291" height="39.639614" stroke="#050505" stroke-opacity="0"*/}
-                                {/*              stroke-width="1.126708"></rect>*/}
-                                {/*        <rect id="Rectangle 34625118" x="18.363342" y="18.363342" rx="19.819807"*/}
-                                {/*              width="39.873291" height="39.639614" stroke="#FF72DB" stroke-opacity="0.5"*/}
-                                {/*              stroke-width="1.126708"></rect>*/}
-                                {/*        <path id="?"*/}
-                                {/*              d="M36.02 42.21L39.02 42.21C39.02 41.7 39.18 41.2 39.49 40.72C39.81 40.23 40.19 39.78 40.64 39.36C41.09 38.92 41.55 38.48 42 38.03C42.45 37.57 42.83 37.03 43.15 36.38C43.46 35.74 43.62 35.06 43.62 34.34C43.62 32.78 43.05 31.55 41.92 30.66Q41.44 30.28 40.91 30.01Q39.58 29.33 37.9 29.33Q36.33 29.33 35.01 29.91Q34.57 30.1 34.16 30.35Q33.45 30.8 32.92 31.4Q32.23 32.17 31.84 33.2L34.43 34.66Q34.73 33.76 35.34 33.18Q35.51 33.02 35.7 32.88C36.3 32.46 37 32.25 37.82 32.25C38.67 32.25 39.35 32.46 39.86 32.86Q40.13 33.08 40.31 33.36Q40.61 33.85 40.61 34.53C40.61 35.03 40.46 35.53 40.14 36.02Q39.67 36.75 39 37.37C38.54 37.77 38.09 38.2 37.64 38.65C37.18 39.09 36.8 39.62 36.49 40.25C36.17 40.86 36.02 41.51 36.02 42.21ZM38.92 44.92C38.53 44.54 38.07 44.35 37.53 44.35Q37.08 44.35 36.7 44.52Q36.38 44.66 36.12 44.92Q35.87 45.19 35.73 45.51Q35.57 45.87 35.57 46.31C35.57 46.85 35.77 47.31 36.15 47.69C36.53 48.07 36.99 48.26 37.53 48.26Q37.93 48.26 38.28 48.12Q38.63 47.98 38.92 47.69C39.3 47.31 39.49 46.85 39.49 46.31Q39.49 45.91 39.35 45.56Q39.21 45.21 38.92 44.92Z"*/}
-                                {/*              fill="#FFFFFF" fill-opacity="1" fill-rule="evenodd"></path>*/}
-                                {/*    </g>*/}
-                                {/*</svg>*/}
-                            </div>
-                        </div>
-                        <div className="flex flex-col"><p className="text-[13px] font-bold leading-[16px]">Подпишись на
-                            канал</p><p className="text-[11px] leading-[11px] opacity-50">+1 Вращение</p></div>
-                    </div>
-                    <button className="p-px bg-gradient-to-t from-transparent from-70% to-[#F03AC2] rounded-xl">
-                        <div
-                            className="flex items-center gap-x-1 bg-gradient-to-b from-[#E204A9] to-[#FE5FD6] px-4 h-8 rounded-xl">
-                            <p className="font-bold text-xs leading-[110%] tracking-[-2%] whitespace-nowrap">Перейти</p>
-                        </div>
-                    </button>
-                </div>
+            <div className="flex flex-col gap-y-2 mt-2 ">
+                {tasksStore.data.map((task, key) =>
+                    <Task
+                        key={key}
+                        reward={task.reward}
+                        title={task.title}
+                        link={task.link}/>
+                )}
             </div>
         </div>
 
