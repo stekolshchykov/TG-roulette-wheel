@@ -4,7 +4,7 @@ import React from "react";
 
 const PageLayout = (props: { children?: React.ReactNode }) => {
     const router = useRouter();
-    const isMainPage = router.pathname === "/";
+    const isMainPage = router.pathname === "/roulette";
 
     return (
         <>
@@ -12,7 +12,6 @@ const PageLayout = (props: { children?: React.ReactNode }) => {
                 {/* Фоновый контейнер */}
                 <div className="fixed inset-0 -z-10 bg-[#151515] overflow-y-auto">
                     {isMainPage ? (
-                        // Фон для главной страницы
                         <div className="absolute inset-0 pointer-events-none">
                             <Image
                                 src="/img/mainglow-Dj1P_1uN.webp"
@@ -56,12 +55,12 @@ const PageLayout = (props: { children?: React.ReactNode }) => {
                             />
                         </div>
                     ) : (
-                        <div className="absolute inset-0 overflow-hidden h-[200px] relative">
+                        <div className="absolute inset-0 overflow-hidden h-[200px] ">
                             <Image
                                 className="w-full h-full object-cover"
                                 src="/img/topglow-CCU_uSUO.png"
-                                width={1920} // предполагаемая ширина фона
-                                height={200}  // высота для адаптации
+                                width={1920}
+                                height={200}
                                 alt=""
                             />
                             <div

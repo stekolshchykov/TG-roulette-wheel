@@ -28,7 +28,7 @@ const Roulette = () => {
     return (
         <PageLayout>
 
-            <div className={"flex flex-col gap-6"}>
+            <div className={"flex flex-col gap-0"}>
                 <MainHeaderComponent/>
                 <GiftComponent/>
                 <RouletteComponent spin={spin} onClick={rouletteClickHandler}/>

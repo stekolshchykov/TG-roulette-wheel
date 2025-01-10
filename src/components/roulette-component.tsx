@@ -36,7 +36,7 @@ const RouletteComponent = (props: Props) => {
     };
 
     return <>
-        <div className="flex-1 flex flex-col justify-end min-h-0 mb-8">
+        <div className="flex-1 flex flex-col justify-end min-h-0 mb-0">
             <div className="w-full flex justify-center">
                 <div
                     className="relative"
