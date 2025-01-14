@@ -19,6 +19,25 @@ const WinModal = observer(() => {
     return (
         <Modal fullSize={false} isOpen={isOpen} onClose={onClose}>
             <div className="bg-black rounded-[15px] p-6 w-full h-full relative overflow-hidden">
+                <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="relative w-full h-full">
+                        <div
+                            className="absolute top-[20%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[158px] h-[158px]">
+                            <div
+                                className="w-full h-full relative"
+                                style={{maskImage: "linear-gradient(black 10%, transparent 100%)"}}
+                            >
+                                <Image
+                                    src="/img/prize-DTbtyTEA.webp"
+                                    alt="Prize"
+                                    width={1100}
+                                    height={1500}
+                                    className="w-full h-full object-contain"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div
                     className="absolute inset-0"
                     style={{
@@ -55,6 +74,7 @@ const WinModal = observer(() => {
                             }}
                         >
                             5000Р
+
                         </span>
                         <p className="text-[7.69px] leading-[17px]">
                             Далее оплачиваем 1Р за доступ к подписке на 5 дней
