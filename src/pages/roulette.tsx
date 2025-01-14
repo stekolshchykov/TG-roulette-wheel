@@ -3,27 +3,25 @@ import MainHeaderComponent from "@/components/main-header-component";
 import MainInfo from "@/components/main-info";
 import RouletteComponent from "@/components/roulette-component";
 import PageLayout from "@/layout/page-layout";
-import React, {useEffect, useState} from "react";
+import {useRootStore} from "@/providers/RootStoreProvider";
+import {observer} from "mobx-react-lite";
+import React, {useEffect} from "react";
 
-const Roulette = () => {
+const Roulette = observer(() => {
 
-    const [spin, setSpin] = useState(0);
-
-    // spin
-    useEffect(() => {
-        const spinInLocalStorage = localStorage.getItem("spin")
-        setSpin(spinInLocalStorage ? +`${spinInLocalStorage}` : 1)
-    }, []);
+    const {rouletteStore} = useRootStore()
 
 
-    // // spin FIXME: uncomment in prod
-    useEffect(() => {
-        localStorage.setItem("spin", `${spin}`)
-    }, [spin]);
+    // localStorage.setItem("spin", `${10}`)
+
 
     const rouletteClickHandler = () => {
-        setSpin(spin - 1)
+        rouletteStore.spinNow()
     }
+
+    useEffect(() => {
+        rouletteStore.load()
+    }, []);
 
     return (
         <PageLayout>
@@ -31,12 +29,15 @@ const Roulette = () => {
             <div className={"flex flex-col gap-0"}>
                 <MainHeaderComponent/>
                 <GiftComponent/>
-                <RouletteComponent spin={spin} onClick={rouletteClickHandler}/>
-                <MainInfo spin={spin}/>
+                <RouletteComponent
+                    spin={rouletteStore.spin}
+                    spinTo={rouletteStore.spinTo}
+                    onClick={rouletteClickHandler}/>
+                <MainInfo spin={rouletteStore.spin}/>
             </div>
 
         </PageLayout>
     );
-};
+})
 
 export default Roulette;

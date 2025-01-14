@@ -1,10 +1,10 @@
-import WinModal from "@/modals/win-modal";
 import Image from "next/image";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 interface Props {
     spin: number;
     onClick: () => void;
+    spinTo: number[]
 }
 
 const RouletteComponent = (props: Props) => {
@@ -15,25 +15,35 @@ const RouletteComponent = (props: Props) => {
 
     const [winModalStatus, setWinModalStatus] = useState(false);
 
-    const spinRoulette = () => {
-        if (props.spin > 0) {
-            props.onClick();
+    const spinRoulette = (spinInner: number, spinMiddle: number, spinOuter: number) => {
+        setRotationInner(spinInner);
 
-            setRotationInner(535);
+        setTimeout(() => {
+            setRotationMiddle(spinMiddle);
+        }, 500);
 
-            setTimeout(() => {
-                setRotationMiddle(435);
-            }, 500);
+        setTimeout(() => {
+            setRotationOuter(spinOuter);
+        }, 1000);
 
-            setTimeout(() => {
-                setRotationOuter(385);
-            }, 1000);
+        setTimeout(() => {
+            setWinModalStatus(true)
+        }, 3000);
 
-            setTimeout(() => {
-                setWinModalStatus(true)
-            }, 3000);
-        }
     };
+
+    useEffect(() => {
+        setRotationInner(0)
+        setRotationMiddle(0)
+        setRotationOuter(0)
+    }, [])
+
+    useEffect(() => {
+        if ((props.spinTo[0] + props.spinTo[1] + props.spinTo[2]) !== 0) {
+            spinRoulette(props.spinTo[0], props.spinTo[1], props.spinTo[2]);
+        }
+        console.log(props.spinTo)
+    }, [props.spinTo])
 
     return <>
         <div className="flex-1 flex flex-col justify-end min-h-0 mb-0">
@@ -109,14 +119,15 @@ const RouletteComponent = (props: Props) => {
                     <div
                         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 cursor-pointer transition-all"
                         style={{width: 229, height: 229}}
-                        onClick={spinRoulette}
+                        onClick={() => props.onClick()}
+                        // onClick={() => spinRoulette(535, 435, 385)}
                     >
                         <Image src="/img/button-BdOvv5f1.webp" alt="Center button" width={229} height={229}/>
                     </div>
                 </div>
             </div>
         </div>
-        <WinModal isOpen={winModalStatus} onAction={(status) => setWinModalStatus(status)}/>
+        {/*<WinModal isOpen={winModalStatus} onAction={(status) => setWinModalStatus(status)}/>*/}
     </>
 };
 
