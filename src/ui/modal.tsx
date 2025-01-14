@@ -24,7 +24,7 @@ const Modal: React.FC<ModalProps> = ({isOpen, onClose, children, fullSize = fals
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
             if (e.key === "Escape") {
-                onClose();
+                onClose?.();
             }
         };
 
@@ -35,11 +35,11 @@ const Modal: React.FC<ModalProps> = ({isOpen, onClose, children, fullSize = fals
         return () => {
             document.removeEventListener("keydown", handleKeyDown);
         };
-    }, [isOpen]);
+    }, [isOpen, onClose]); // ✅ Добавили onClose в зависимости
 
     const handleBackgroundClick = (e: MouseEvent<HTMLDivElement>) => {
         if ((e.target as HTMLDivElement).id === "modalBackground") {
-            onClose();
+            onClose?.();
         }
     };
 
@@ -54,7 +54,7 @@ const Modal: React.FC<ModalProps> = ({isOpen, onClose, children, fullSize = fals
             onClick={handleBackgroundClick}
         >
             <div
-                className={`max-h-[90vh] overflow-auto   rounded-xl shadow-lg transition-all duration-500 ease-in-out ${
+                className={`max-h-[90vh] overflow-auto rounded-xl shadow-lg transition-all duration-500 ease-in-out ${
                     isVisible
                         ? "scale-100 rotate-0 translate-y-0"
                         : "scale-90 rotate-[-8deg] translate-y-[-50px] opacity-0"

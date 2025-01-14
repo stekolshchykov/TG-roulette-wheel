@@ -14,7 +14,7 @@ const RouletteComponent = (props: Props) => {
     const [rotationMiddle, setRotationMiddle] = useState(0);
     const [rotationOuter, setRotationOuter] = useState(0);
 
-    const [winModalStatus, setWinModalStatus] = useState(false);
+    const [, setWinModalStatus] = useState(false);
 
     const spinRoulette = (spinInner: number, spinMiddle: number, spinOuter: number) => {
         setRotationInner(spinInner);

@@ -21,7 +21,7 @@ const Roulette = observer(() => {
 
     useEffect(() => {
         rouletteStore.load()
-    }, []);
+    }, [rouletteStore]);
 
     return (
         <PageLayout>
