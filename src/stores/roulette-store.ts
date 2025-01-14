@@ -7,6 +7,7 @@ class RouletteStore {
     public loaded = false; // Загружены ли данные из localStorage
     public spinCounter = 0;
     public spinTo = [0, 0, 0]
+    public modal: "5k" | "iphone" | "" = ""
 
     constructor(public rootStore: RootStore) {
         makeAutoObservable(this);
@@ -80,6 +81,7 @@ class RouletteStore {
                 getRandomNumber(diapazone.zero.middle.from, diapazone.zero.middle.to),
                 getRandomNumber(diapazone.iphone.outer.from, diapazone.iphone.outer.to)
             ]
+            this.modal = ""
         } else if (this.spinCounter % 3 === 0) {
             const random = Math.floor(Math.random() * 3) + 1
             this.spinTo = [
@@ -93,12 +95,14 @@ class RouletteStore {
                     ? getRandomNumber(diapazone.fiveK.outer.from, diapazone.fiveK.outer.to)
                     : getRandomNumber(diapazone.zero.outer.from, diapazone.zero.outer.to)
             ]
+            this.modal = "5k"
         } else {
             this.spinTo = [
                 getRandomNumber(diapazone.zero.inner.from, diapazone.zero.inner.to),
                 getRandomNumber(diapazone.zero.middle.from, diapazone.zero.middle.to),
                 getRandomNumber(diapazone.zero.outer.from, diapazone.zero.outer.to)
             ]
+            this.modal = ""
         }
 
     };

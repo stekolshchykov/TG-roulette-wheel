@@ -1,18 +1,25 @@
+import {useRootStore} from "@/providers/RootStoreProvider";
 import Modal from "@/ui/modal";
+import {observer} from "mobx-react-lite";
 import Image from "next/image";
-import React from "react";
+import React, {useEffect, useState} from "react";
 
-interface Props {
-    isOpen: boolean
-    onAction: (status: boolean) => void
-}
+const WinModal = observer(() => {
 
-const WinModal = (props: Props) => {
+    const {rouletteStore} = useRootStore()
+
+    const [isOpen, setIsOpen] = useState(false);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsOpen(rouletteStore.modal === "5k")
+        }, 3200)
+    }, [rouletteStore.modal]);
 
     return <Modal
         fullSize={false}
-        isOpen={props.isOpen}
-        onClose={() => props.onAction(false)}
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
     >
         <div className="bg-black rounded-[15px] p-6 w-full h-full relative overflow-hidden">
             <div
@@ -23,7 +30,7 @@ const WinModal = (props: Props) => {
             ></div>
             <button
                 className="absolute top-4 right-4 z-[70] hover:opacity-80 active:scale-95 transition-all"
-                onClick={() => props.onAction(false)}
+                onClick={() => setIsOpen(false)}
             >
                 <Image src={"/icon/x.svg"} alt={""} height={27} width={27}/>
             </button>
@@ -104,5 +111,5 @@ const WinModal = (props: Props) => {
         </div>
     </Modal>
 
-}
+})
 export default WinModal

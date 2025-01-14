@@ -1,3 +1,4 @@
+import WinModal from "@/modals/win-modal";
 import Image from "next/image";
 import React, {useEffect, useState} from "react";
 
@@ -127,6 +128,7 @@ const RouletteComponent = (props: Props) => {
                 </div>
             </div>
         </div>
+        <WinModal/>
         {/*<WinModal isOpen={winModalStatus} onAction={(status) => setWinModalStatus(status)}/>*/}
     </>
 };
