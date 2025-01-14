@@ -23,6 +23,9 @@ class RouletteStore {
     }
 
     public spinNow = () => {
+
+        if (this.spin <= 0) return
+
         this.spin--;
         this.spinCounter++;
 
@@ -75,14 +78,16 @@ class RouletteStore {
             }
         }
 
-        if (this.spinCounter % 6 === 0) {
-            this.spinTo = [
-                getRandomNumber(diapazone.zero.inner.from, diapazone.zero.inner.to),
-                getRandomNumber(diapazone.zero.middle.from, diapazone.zero.middle.to),
-                getRandomNumber(diapazone.iphone.outer.from, diapazone.iphone.outer.to)
-            ]
-            this.modal = ""
-        } else if (this.spinCounter % 3 === 0) {
+        // if (this.spinCounter % 6 === 0) {
+        //     this.spinTo = [
+        //         getRandomNumber(diapazone.zero.inner.from, diapazone.zero.inner.to),
+        //         getRandomNumber(diapazone.zero.middle.from, diapazone.zero.middle.to),
+        //         getRandomNumber(diapazone.iphone.outer.from, diapazone.iphone.outer.to)
+        //     ]
+        //     this.modal = ""
+        // } else
+
+        if (this.spinCounter % 3 === 0) {
             const random = Math.floor(Math.random() * 3) + 1
             this.spinTo = [
                 random === 1
@@ -111,7 +116,7 @@ class RouletteStore {
         if (typeof window !== "undefined" && localStorage) {
             const spinRaw = localStorage.getItem("spin");
             runInAction(() => {
-                this.spin = spinRaw ? +spinRaw : 0;
+                this.spin = spinRaw ? +spinRaw : 3;
                 this.loaded = true;
             });
         } else {
