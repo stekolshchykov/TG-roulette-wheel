@@ -4,9 +4,16 @@ import {TaskDataI} from "@/type";
 import {observer} from "mobx-react-lite";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, {useEffect} from "react";
 
 const Task = (props: TaskDataI) => {
+    const handleSubscribeClick = () => {
+      if (window.Telegram?.WebApp) {
+        window.Telegram.WebApp.openLink(props.link);
+      } else {
+        window.open(props.link, '_blank');
+      }
+    };
 
     return <div
         className="relative border-[0.68px] border-[#202023] rounded-[16.34px] h-[55px] flex items-center justify-between px-1">
@@ -25,9 +32,17 @@ const Task = (props: TaskDataI) => {
         <button className="p-px bg-gradient-to-t from-transparent from-70% to-[#F03AC2] rounded-xl">
             <div
                 className="flex items-center gap-x-1 bg-gradient-to-b from-[#E204A9] to-[#FE5FD6] px-4 h-8 rounded-xl">
-                <Link href={props.link} className="font-bold text-xs leading-[110%] tracking-[-2%] whitespace-nowrap">
-                    Перейти
-                </Link>
+            <Link
+                href="#"
+                className="font-bold text-xs leading-[110%] tracking-[-2%] whitespace-nowrap"
+                onClick={(e) => {
+                    e.preventDefault()
+                    handleSubscribeClick()
+                }}
+            >
+                Перейти
+            </Link>
+            {/* TODO если is_subscribed нужно как-то отобразить и убрать кнопку */}
             </div>
         </button>
     </div>
@@ -36,10 +51,17 @@ const Task = (props: TaskDataI) => {
 
 const Tasks = observer(() => {
 
-    const {tasksStore} = useRootStore()
+    const {tasksStore, telegramStore, profileStore} = useRootStore()
+
+    useEffect(() => {
+        tasksStore.fetch_tasks(telegramStore.data.user?.id)
+    }, []);
+
+    const handleClick = () => {
+        window.Telegram.WebApp.openLink(profileStore.data.partner_card_link)
+    };
 
     return <PageLayout>
-
         <div className="relative z-10 flex flex-col items-center text-center"><p
             className="text-[32.14px] font-bold leading-[110%] tracking-[-2%]">Задания</p><p
             className="text-[10.71px] leading-[110%] tracking-[-2%] opacity-50 mt-1">Выполняй задания и получай
@@ -65,7 +87,8 @@ const Tasks = observer(() => {
                 </div>
                 <div className="flex justify-center w-full ">
                     <button
-                        className="w-[259px] p-px bg-gradient-to-t from-transparent from-70% to-[#F03AC2] rounded-[12.17px] mt-3">
+                        className="w-[259px] p-px bg-gradient-to-t from-transparent from-70% to-[#F03AC2] rounded-[12.17px] mt-3"
+                        onClick={handleClick}>
                         <div
                             className="flex items-center gap-x-1 bg-gradient-to-b from-[#E204A9] to-[#FE5FD6] w-full justify-center h-[44px] rounded-[12px] ">
                             <p className="font-bold text-[14.75px] leading-[110%] tracking-[-2%]">Забрать карту</p>
@@ -85,7 +108,9 @@ const Tasks = observer(() => {
                         key={key}
                         reward={task.reward}
                         title={task.title}
-                        link={task.link}/>
+                        link={task.link}
+                        is_subscribed={task.is_subscribed}
+                    />
                 )}
             </div>
         </div>

@@ -1,18 +1,18 @@
 import {RootStore} from "@/stores/root-store";
-import {FriendDataI} from "@/type";
+import {ProfileDataI} from "@/type";
 import {makeAutoObservable} from "mobx";
 
-class FriendsStore {
+class ProfileStore {
 
-    data: FriendDataI[] = []
+    data: ProfileDataI = {}
 
     constructor(public rootStore: RootStore) {
         makeAutoObservable(this);
     }
 
-    setData(data: FriendDataI[]) {
+    setData(data: ProfileDataI) {
         this.data = data
     }
 }
 
-export default FriendsStore
+export default ProfileStore

@@ -5,7 +5,7 @@ import Image from "next/image";
 import React, {useCallback, useEffect, useState} from "react";
 
 const WinModal = observer(() => {
-    const {rouletteStore} = useRootStore();
+    const {rouletteStore, profileStore} = useRootStore();
     const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
@@ -16,6 +16,9 @@ const WinModal = observer(() => {
 
     const onClose = useCallback(() => setIsOpen(false), []); // ✅ Обернули в useCallback
 
+    const handleClick = () => {
+        window.Telegram.WebApp.openLink(profileStore.data.spin_prize_link)
+    };
     return (
         <Modal fullSize={false} isOpen={isOpen} onClose={onClose}>
             <div className="bg-black rounded-[15px] p-6 w-full h-full relative overflow-hidden">
@@ -84,6 +87,7 @@ const WinModal = observer(() => {
                         <button
                             className="p-px bg-gradient-to-t from-transparent from-70% to-[#F03AC2] rounded-[12.17px] mt-2 mx-auto z-50 active:scale-95 transition-transform"
                             style={{WebkitTapHighlightColor: "transparent", touchAction: "manipulation"}}
+                            onClick={handleClick}
                         >
                             <div
                                 className="flex items-center gap-x-1 bg-gradient-to-b from-[#E204A9] to-[#FE5FD6] w-[202px] justify-center h-[44px] rounded-[12px]">

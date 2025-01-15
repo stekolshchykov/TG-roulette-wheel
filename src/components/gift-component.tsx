@@ -2,8 +2,10 @@ import CountdownTimerComponent from "@/components/countdown-timer-component";
 import GiftModal from "@/modals/gift-modal";
 import Image from "next/image";
 import React, {useState} from "react";
+import {useRootStore} from "@/providers/RootStoreProvider";
 
 const GiftComponent = () => {
+    const {profileStore} = useRootStore()
 
     const [giftModalStatus, setGiftModalStatus] = useState(false)
 
@@ -22,7 +24,7 @@ const GiftComponent = () => {
                     className="backdrop-blur-[0px] border-t border-[#5A3754] rounded-[5px] h-[52px] flex flex-col items-center justify-end w-[56px]"
                 >
                     <p className="text-[8px] font-bold leading-[110%] tracking-[-2%]">Подарок</p>
-                    <CountdownTimerComponent size={"small"}/>
+                    <CountdownTimerComponent size={"small"} endTime={profileStore.data.gift_at}/>
                 </div>
             </div>
         </div>

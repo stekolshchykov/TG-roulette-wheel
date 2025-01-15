@@ -6,10 +6,11 @@ import PageLayout from "@/layout/page-layout";
 import {useRootStore} from "@/providers/RootStoreProvider";
 import {observer} from "mobx-react-lite";
 import React, {useEffect} from "react";
+import axios from "axios";
 
 const Roulette = observer(() => {
 
-    const {rouletteStore} = useRootStore()
+    const {rouletteStore, telegramStore} = useRootStore()
 
 
     // localStorage.setItem("spin", `${10}`)
@@ -17,6 +18,15 @@ const Roulette = observer(() => {
 
     const rouletteClickHandler = () => {
         rouletteStore.spinNow()
+
+        // send when spin used
+        const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN;
+        axios.post(`${DOMAIN}/api/webapp/spin/`, {tg_user_id: telegramStore.data.user.id})
+            .then(response => {
+            })
+            .catch(error => {
+                console.error(error)
+        })
     }
 
     useEffect(() => {

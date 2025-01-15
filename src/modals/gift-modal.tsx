@@ -1,6 +1,7 @@
 import Modal from "@/ui/modal";
 import Image from "next/image";
 import React from "react";
+import {useRootStore} from "@/providers/RootStoreProvider";
 
 interface Props {
     isOpen: boolean
@@ -8,6 +9,11 @@ interface Props {
 }
 
 const GiftModal = (props: Props) => {
+    const {profileStore} = useRootStore()
+
+    const handleClick = () => {
+        window.Telegram.WebApp.openLink(profileStore.data.gift_link)
+    };
 
     return <Modal
         fullSize={false}
@@ -113,6 +119,7 @@ const GiftModal = (props: Props) => {
                     <button
                         className="p-px bg-gradient-to-t from-transparent from-70% to-[#F03AC2] rounded-[12.17px] mt-2 mx-auto z-50 active:scale-95 transition-transform"
                         style={{WebkitTapHighlightColor: "transparent", touchAction: "manipulation"}}
+                        onClick={handleClick}
                     >
                         <div
                             className="flex items-center gap-x-1 bg-gradient-to-b from-[#E204A9] to-[#FE5FD6] w-[202px] justify-center h-[44px] rounded-[12px]">

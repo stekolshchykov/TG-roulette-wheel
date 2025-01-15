@@ -3,12 +3,22 @@ import React, {useEffect, useState} from "react";
 
 interface Props {
     timeLeft?: number
+    endTime?: string
     size?: "normal" | "small"
 }
 
 const CountdownTimerComponent = (props: Props) => {
+    let startTime = props?.timeLeft;
+    // calculate seconds to endTime(string datetime)
+    if (props.endTime !== undefined && props.endTime !== null) {
+        const targetDate = new Date(props.endTime);
+        const now = new Date();
+        const differenceInMs = targetDate - now;
+        const differenceInSeconds = Math.floor(differenceInMs / 1000);
+        startTime = differenceInSeconds > 0 ? differenceInSeconds : 0;
+    }
 
-    const [timeLeft, setTimeLeft] = useState(props.timeLeft || 86400);
+    const [timeLeft, setTimeLeft] = useState(startTime);
 
     const formatTime = (seconds: number) => {
         const hours = String(Math.floor(seconds / 3600)).padStart(2, '0');

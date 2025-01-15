@@ -1,7 +1,15 @@
 import Menu from "@/layout/menu";
 import {useRouter} from "next/router";
+import {useRootStore} from "@/providers/RootStoreProvider";
+import {useEffect} from "react";
 
 const MainLayout = (props: { children?: React.ReactNode }) => {
+    const rootStore = useRootStore();
+    useEffect(() => {
+        if (rootStore) {
+            rootStore.initTelegramData();
+        }
+    }, [rootStore]);
 
     const router = useRouter()
 

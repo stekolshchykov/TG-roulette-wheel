@@ -1,6 +1,7 @@
 import {RootStore} from "@/stores/root-store";
-import {TaskDataI} from "@/type";
+import {FriendDataI, TaskDataI} from "@/type";
 import {makeAutoObservable} from "mobx";
+import axios from "axios";
 
 class TasksStore {
 
@@ -8,70 +9,20 @@ class TasksStore {
 
     constructor(public rootStore: RootStore) {
 
-        this.load()
-
         makeAutoObservable(this);
     }
 
-    private load = () => {
-        // TODO: Logic
-        this.data = [
-            {
-                title: "Подпишись на канал",
-                reward: 1,
-                link: "https://v2.wbruletka.games/tasks"
-            },
-            {
-                title: "Подпишись на канал",
-                reward: 1,
-                link: "https://v2.wbruletka.games/tasks"
-            },
-            {
-                title: "Подпишись на канал",
-                reward: 1,
-                link: "https://v2.wbruletka.games/tasks"
-            },
-            {
-                title: "Подпишись на канал",
-                reward: 1,
-                link: "https://v2.wbruletka.games/tasks"
-            },
-            {
-                title: "Подпишись на канал",
-                reward: 1,
-                link: "https://v2.wbruletka.games/tasks"
-            },
-            {
-                title: "Подпишись на канал",
-                reward: 1,
-                link: "https://v2.wbruletka.games/tasks"
-            },
-            {
-                title: "Подпишись на канал",
-                reward: 1,
-                link: "https://v2.wbruletka.games/tasks"
-            },
-            {
-                title: "Подпишись на канал",
-                reward: 1,
-                link: "https://v2.wbruletka.games/tasks"
-            },
-            {
-                title: "Подпишись на канал",
-                reward: 1,
-                link: "https://v2.wbruletka.games/tasks"
-            },
-            {
-                title: "Подпишись на канал",
-                reward: 1,
-                link: "https://v2.wbruletka.games/tasks"
-            },
-            {
-                title: "Подпишись на канал",
-                reward: 1,
-                link: "https://v2.wbruletka.games/tasks"
-            },
-        ]
+
+    public fetch_tasks(tg_user_id: number) {
+        const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN;
+        axios.post(`${DOMAIN}/api/webapp/tasks/`, {tg_user_id: tg_user_id})
+            .then(response => {
+                const data = response.data
+                this.data = data.tasks
+            })
+            .catch(error => {
+                console.error("Error fetching data:", error)
+            })
     }
 
 }

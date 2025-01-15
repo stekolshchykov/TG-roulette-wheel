@@ -3,22 +3,35 @@ import {useRootStore} from "@/providers/RootStoreProvider";
 import {observer} from "mobx-react-lite";
 import Image from "next/image";
 
+
 const Friends = observer(() => {
+    const {friendsStore, telegramStore} = useRootStore()
 
-    const {friendsStore} = useRootStore()
-
-    const url = "https://t.me/Ruletkawinbot?start=ref_375462975"
+    const invite_url = `https://t.me/wbrullerbot?start=ref_${telegramStore.data.user?.id}`
 
     const onCopyHandler = () => {
-        navigator.clipboard.writeText(url)
+        navigator.clipboard.writeText(invite_url)
     }
 
+    const handleInviteFriendClick = () => {
+        const share_url = `https://t.me/share/url?url=${encodeURIComponent(invite_url)}&text=${encodeURIComponent('☝️ Переходи по ссылке в лучшую Telegram рулетку, вращай и получай купоны от 500₽ до 30000₽ на WB')}`
+        if (window.Telegram?.WebApp) {
+            window.Telegram.WebApp.openTelegramLink(share_url)
+        } else {
+            window.open(share_url, '_blank')
+        }
+    };
+
     return <PageLayout>
+
         <div className="relative z-10 flex flex-col items-center text-center"><p
             className="text-[32.14px] font-bold leading-[110%] tracking-[-2%]">Приглашай и вращай</p><p
             className="text-[10.71px] leading-[110%] tracking-[-2%] opacity-50 mt-1">За каждого друга вы получаете 1
             вращение</p>
-            <button className="p-px bg-gradient-to-t from-transparent from-70% to-[#F03AC2] rounded-[12.17px] mt-3">
+            <button
+                onClick={handleInviteFriendClick}
+                className="p-px bg-gradient-to-t from-transparent from-70% to-[#F03AC2] rounded-[12.17px] mt-3"
+            >
                 <div
                     className="flex items-center gap-x-1 bg-gradient-to-b from-[#E204A9] to-[#FE5FD6] w-[202px] justify-center h-[44px] rounded-[12px]">
                     <p className="font-bold text-[17px] leading-[110%] tracking-[-2%]">Пригласить друга</p></div>
@@ -30,7 +43,7 @@ const Friends = observer(() => {
             <div className="flex gap-x-2 items-center">
                 <div className="w-[1px] h-[16px] rounded-[10px] bg-[#E100A8] shadow-[0px_0px_10px_#E100A8]"></div>
                 <p className="text-[13.7px] leading-[17px] text-[#F74DCC] truncate">
-                    {url}
+                    {invite_url}
                 </p>
                 <Image
                     src={"/icon/copy.svg"}
@@ -67,7 +80,8 @@ const Friends = observer(() => {
                         <p
                             className="absolute bottom-2 w-full text-sm font-bold leading-4 text-center">Вращения</p>
                         <div
-                            className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[104px] h-3 rounded-xl bg-[#FC8DFF] opacity-100 blur-2xl -mb-4"></div>
+                            className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[104px] h-3 rounded-xl bg-[#FC8DFF] opacity-100 blur-2xl -mb-4">2
+                        </div>
                     </div>
                 </div>
             </div>

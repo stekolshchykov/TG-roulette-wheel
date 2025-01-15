@@ -1,18 +1,18 @@
 import {RootStore} from "@/stores/root-store";
-import {FriendDataI} from "@/type";
+import {TelegramDataI} from "@/type";
 import {makeAutoObservable} from "mobx";
 
-class FriendsStore {
+class TelegramStore {
 
-    data: FriendDataI[] = []
+    data: TelegramDataI = {}
 
     constructor(public rootStore: RootStore) {
         makeAutoObservable(this);
     }
 
-    setData(data: FriendDataI[]) {
+    setData(data: TelegramDataI) {
         this.data = data
     }
 }
 
-export default FriendsStore
+export default TelegramStore

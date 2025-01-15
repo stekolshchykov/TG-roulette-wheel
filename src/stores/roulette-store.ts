@@ -22,6 +22,11 @@ class RouletteStore {
         );
     }
 
+    setData(spin: number, spinCounter: number) {
+        this.spin = spin
+        this.spinCounter = spinCounter
+    }
+
     public spinNow = () => {
 
         if (this.spin <= 0) return
