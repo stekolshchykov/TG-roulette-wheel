@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import {useRouter} from "next/router";
-import React from "react";
+import React, {useEffect, useState} from "react";
 
 const LinkToPage = (props: { link: string; title: string; icon: string }) => {
     const router = useRouter();
@@ -18,20 +18,38 @@ const LinkToPage = (props: { link: string; title: string; icon: string }) => {
 };
 
 const Menu = () => {
-    return (
-        <nav
-            className={`
+
+    const router = useRouter();
+
+    const [visibilityStatus, setVisibilityStatus] = useState(false);
+
+    useEffect(() => {
+        if (router.pathname === "/game-restriction") {
+            setVisibilityStatus(false)
+        } else {
+            setVisibilityStatus(true)
+        }
+    }, [router.pathname]);
+
+    if (visibilityStatus === false) {
+        return <></>
+    } else {
+        return <>
+            <nav
+                className={`
                 flex justify-center p-2 gap-4 fixed bottom-0 left-0 right-0 z-50 px-4 h-[80px]
                 bg-[#4E4E4E]/15 backdrop-blur-[24px]
                 border-t border-[#6C3661] rounded-t-xl
                 font-proxima font-bold
             `}
-        >
-            <LinkToPage link="/roulette" icon="/icon/roulette.svg" title="Рулетка"/>
-            <LinkToPage link="/friends" icon="/icon/friend.svg" title="Друзья"/>
-            <LinkToPage link="/tasks" icon="/icon/task.svg" title="Задания"/>
-        </nav>
-    );
+            >
+                <LinkToPage link="/roulette" icon="/icon/roulette.svg" title="Рулетка"/>
+                <LinkToPage link="/friends" icon="/icon/friend.svg" title="Друзья"/>
+                <LinkToPage link="/tasks" icon="/icon/task.svg" title="Задания"/>
+            </nav>
+        </>
+    }
+
 };
 
 export default Menu;

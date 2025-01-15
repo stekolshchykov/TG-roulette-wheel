@@ -1,12 +1,29 @@
 import MainLayout from "@/layout/main-layout";
 import {RootStoreProvider} from "@/providers/RootStoreProvider";
 import type {AppProps} from "next/app";
-import React from "react";
+import {useRouter} from "next/router";
+import React, {useEffect} from "react";
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import "@/globals.css";
 
+function isMobile() {
+    if (typeof navigator !== "undefined") {
+        return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    }
+    return false;
+}
+
 function MyApp({Component, pageProps}: AppProps) {
+
+    const router = useRouter();
+
+    useEffect(() => {
+        if (!isMobile() && router.pathname !== "/game-restriction") {
+            router.replace("/game-restriction");
+        }
+    }, [router.pathname]);
+
     return <>
         <RootStoreProvider>
             <MainLayout>
