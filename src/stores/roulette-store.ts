@@ -1,5 +1,13 @@
+import axiosBackendInstance from "@/libs/axiosBackendInstance";
 import { RootStore } from "@/stores/root-store";
+import { ApiWebappReponseI } from "@/type";
 import { makeAutoObservable, reaction, runInAction } from "mobx";
+
+declare global {
+    interface Window {
+        Telegram: any;
+    }
+}
 
 const FREE_SPIN_TIME = 86400
 
@@ -137,19 +145,44 @@ class RouletteStore {
 
     };
 
-    public load = () => {
-        if (typeof window !== "undefined" && localStorage) {
-            const spinRaw = localStorage.getItem("spin");
-            const timeLeftRaw = localStorage.getItem("timeLeft");
-            runInAction(() => {
-                this.spin = spinRaw ? +spinRaw : 3;
-                this.loaded = true;
-                this.timeLeft = timeLeftRaw ? +timeLeftRaw : FREE_SPIN_TIME;
-            });
-        } else {
-            this.spin = 0;
-            this.loaded = true;
+    public load = async () => {
+        // if (typeof window !== "undefined" && localStorage) {
+        //     const spinRaw = localStorage.getItem("spin");
+        //     const timeLeftRaw = localStorage.getItem("timeLeft");
+        //     runInAction(() => {
+        //         this.spin = spinRaw ? +spinRaw : 3;
+        //         this.loaded = true;
+        //         this.timeLeft = timeLeftRaw ? +timeLeftRaw : FREE_SPIN_TIME;
+        //     });
+        // } else {
+        //     this.spin = 0;
+        //     this.loaded = true;
+        // }
+        const tg = window?.Telegram?.WebApp;
+        console.log("+++tg.initDataUnsafe.user.id", tg?.initDataUnsafe?.user?.id);
+        console.log("+++tg", tg)
+        const dataRaw: ApiWebappReponseI | null = await axiosBackendInstance
+            .post("api/webapp/", {
+
+                "tg_user_id": 668242216
+
+            })
+            .then((response) => {
+                // console.log("response: ", response?.data?.data);
+                return response?.data?.data || null
+            })
+            .catch((error) => {
+                // console.log("error: ", error);
+                return null
+            })
+
+        if (dataRaw) {
+            this.spin = dataRaw.available_spins || 0
         }
+
+        this.loaded = true
+
+        console.log("dataRaw: ", dataRaw);
     };
 
 
