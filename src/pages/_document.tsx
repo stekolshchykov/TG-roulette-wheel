@@ -1,4 +1,4 @@
-import Document, {Head, Html, Main, NextScript} from 'next/document';
+import Document, { Head, Html, Main, NextScript } from 'next/document';
 
 class MyDocument extends Document {
 
@@ -7,11 +7,13 @@ class MyDocument extends Document {
         return (
             <Html>
                 <Head>
+                    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
                     {/*<link rel="icon" href="/favicon.png"/>*/}
                 </Head>
                 <body>
-                <Main/>
-                <NextScript/>
+                    <Main />
+                    <NextScript />
                 </body>
             </Html>
         );
