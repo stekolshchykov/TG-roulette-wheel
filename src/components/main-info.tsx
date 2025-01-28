@@ -28,7 +28,8 @@ const MainInfo = (props: { spin: number }) => {
                         <Image src="/icon/star.svg" alt="icon" width={8} height={8}/>
                         <div>Бесплатный спин</div>
                     </div>
-                    <CountdownTimerComponent size={"normal"} timeLeft={10800}/>
+                    
+                    <CountdownTimerComponent size={"normal"} timeLeft={1}/>
                 </div>
             </div>
         </div>

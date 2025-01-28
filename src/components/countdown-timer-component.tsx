@@ -1,14 +1,21 @@
 import ButtonUi from "@/ui/button-ui";
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
+import { observer } from "mobx-react-lite";
+import { useRootStore } from "@/providers/RootStoreProvider";
 
 interface Props {
     timeLeft?: number
     size?: "normal" | "small"
 }
 
-const CountdownTimerComponent = (props: Props) => {
+const CountdownTimerComponent = observer((props: Props) => {
+
+    const { rouletteStore } = useRootStore()
+
 
     const [timeLeft, setTimeLeft] = useState(props.timeLeft || 86400);
+
+    const isTime = timeLeft >= 0
 
     const formatTime = (seconds: number) => {
         const hours = String(Math.floor(seconds / 3600)).padStart(2, '0');
@@ -17,6 +24,12 @@ const CountdownTimerComponent = (props: Props) => {
         return `${hours}:${minutes}:${sec}`;
     };
 
+    const getFreeSpinHandler = () => {
+        if (!isTime) {
+            rouletteStore.spin += 1
+        }
+    }
+
     useEffect(() => {
         const interval = setInterval(() => {
             setTimeLeft(prevTime => prevTime - 1);
@@ -24,11 +37,20 @@ const CountdownTimerComponent = (props: Props) => {
         return () => clearInterval(interval);
     }, []);
 
-
     if (props.size === "small")
-        return <ButtonUi size={"small"} width={80}>{formatTime(timeLeft)}</ButtonUi>
+        return <ButtonUi
+            size={"small"}
+            onClick={getFreeSpinHandler}
+            width={80}>
+            {isTime ? formatTime(timeLeft) : "Получить"}
+        </ButtonUi>
     else
-        return <ButtonUi size={"normal"} width={150}>{formatTime(timeLeft)}</ButtonUi>
-}
+        return <ButtonUi
+            size={"normal"}
+            onClick={getFreeSpinHandler}
+            width={150}>
+            {isTime ? formatTime(timeLeft) : "Получить"}
+        </ButtonUi>
+})
 
 export default CountdownTimerComponent
