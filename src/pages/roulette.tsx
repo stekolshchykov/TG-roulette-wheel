@@ -12,6 +12,7 @@ const Roulette = observer(() => {
     const { rouletteStore } = useRootStore()
 
     const [userId, setUserId] = useState<string | null>(null);
+    const [testData, setTestData] = useState<string | null>(null);
 
     // localStorage.setItem("spin", `${10}`)
 
@@ -29,6 +30,7 @@ const Roulette = observer(() => {
         const tg = window?.Telegram?.WebApp;
         const id = tg?.initDataUnsafe?.user?.id || null;
         setUserId(id);
+        setTestData(JSON.stringify(tg));
     }, []);
 
     return (
@@ -38,6 +40,9 @@ const Roulette = observer(() => {
 
                 <div>
                     id: {JSON.stringify(userId)}
+                </div>
+                <div>
+                    testData: {testData}
                 </div>
                 <MainHeaderComponent />
                 <GiftComponent />
