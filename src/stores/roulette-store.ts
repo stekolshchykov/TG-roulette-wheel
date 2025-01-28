@@ -1,5 +1,7 @@
-import {RootStore} from "@/stores/root-store";
-import {makeAutoObservable, reaction, runInAction} from "mobx";
+import { RootStore } from "@/stores/root-store";
+import { makeAutoObservable, reaction, runInAction } from "mobx";
+
+const FREE_SPIN_TIME = 86400
 
 class RouletteStore {
 
@@ -9,9 +11,10 @@ class RouletteStore {
     public spinTo = [0, 0, 0]
     public modal: "5k" | "iphone" | "" = ""
 
+    public timeLeft = 0;
+
     constructor(public rootStore: RootStore) {
         makeAutoObservable(this);
-
         reaction(
             () => this.spin,
             (count, countOld) => {
@@ -20,6 +23,28 @@ class RouletteStore {
                 }
             }
         );
+        reaction(
+            () => this.timeLeft,
+            () => {
+                if (this.loaded) {
+                    this.save();
+                }
+            }
+        );
+        this.timer();
+    }
+
+    private timer = () => {
+        setInterval(() => {
+            if (this.timeLeft > 0) {
+                this.timeLeft--;
+            }
+        }, 1000)
+    }
+
+    public getFreeSpin = () => {
+        this.spin += 1
+        this.timeLeft = FREE_SPIN_TIME;
     }
 
     public spinNow = () => {
@@ -115,22 +140,26 @@ class RouletteStore {
     public load = () => {
         if (typeof window !== "undefined" && localStorage) {
             const spinRaw = localStorage.getItem("spin");
+            const timeLeftRaw = localStorage.getItem("timeLeft");
             runInAction(() => {
                 this.spin = spinRaw ? +spinRaw : 3;
                 this.loaded = true;
+                this.timeLeft = timeLeftRaw ? +timeLeftRaw : FREE_SPIN_TIME;
             });
         } else {
             this.spin = 0;
             this.loaded = true;
         }
-        console.log("Spin loaded:", this.spin);
     };
+
 
     private save = () => {
         if (typeof window !== "undefined" && localStorage) {
             localStorage.setItem("spin", `${this.spin}`);
+            localStorage.setItem("timeLeft", `${this.timeLeft}`);
         }
     };
+
 }
 
 export default RouletteStore;

@@ -13,9 +13,8 @@ const CountdownTimerComponent = observer((props: Props) => {
     const { rouletteStore } = useRootStore()
 
 
-    const [timeLeft, setTimeLeft] = useState(props.timeLeft || 86400);
 
-    const isTime = timeLeft >= 0
+    const isTime = rouletteStore.timeLeft > 0
 
     const formatTime = (seconds: number) => {
         const hours = String(Math.floor(seconds / 3600)).padStart(2, '0');
@@ -26,30 +25,31 @@ const CountdownTimerComponent = observer((props: Props) => {
 
     const getFreeSpinHandler = () => {
         if (!isTime) {
-            rouletteStore.spin += 1
+            rouletteStore.getFreeSpin()
         }
     }
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setTimeLeft(prevTime => prevTime - 1);
-        }, 1000);
-        return () => clearInterval(interval);
-    }, []);
+    // useEffect(() => {
+    //     const interval = setInterval(() => {
+    //         // setTimeLeft(.prevTime => prevTime - 1);
+    //         rouletteStore.timeLeft =-1
+    //     }, 1000);
+    //     return () => clearInterval(interval);
+    // }, []);
 
     if (props.size === "small")
         return <ButtonUi
             size={"small"}
             onClick={getFreeSpinHandler}
             width={80}>
-            {isTime ? formatTime(timeLeft) : "Получить"}
+            {isTime ? formatTime(rouletteStore.timeLeft) : "Получить"}
         </ButtonUi>
     else
         return <ButtonUi
             size={"normal"}
             onClick={getFreeSpinHandler}
             width={150}>
-            {isTime ? formatTime(timeLeft) : "Получить"}
+            {isTime ? formatTime(rouletteStore.timeLeft) : "Получить"}
         </ButtonUi>
 })
 
