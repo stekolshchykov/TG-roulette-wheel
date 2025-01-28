@@ -3,14 +3,15 @@ import MainHeaderComponent from "@/components/main-header-component";
 import MainInfo from "@/components/main-info";
 import RouletteComponent from "@/components/roulette-component";
 import PageLayout from "@/layout/page-layout";
-import {useRootStore} from "@/providers/RootStoreProvider";
-import {observer} from "mobx-react-lite";
-import React, {useEffect} from "react";
+import { useRootStore } from "@/providers/RootStoreProvider";
+import { observer } from "mobx-react-lite";
+import React, { useEffect, useState } from "react";
 
 const Roulette = observer(() => {
 
-    const {rouletteStore} = useRootStore()
+    const { rouletteStore } = useRootStore()
 
+    const [userId, setUserId] = useState<string | null>(null);
 
     // localStorage.setItem("spin", `${10}`)
 
@@ -23,17 +24,28 @@ const Roulette = observer(() => {
         rouletteStore.load()
     }, [rouletteStore]);
 
+
+    useEffect(() => {
+        const tg = window?.Telegram?.WebApp;
+        const id = tg?.initDataUnsafe?.user?.id || null;
+        setUserId(id);
+    }, []);
+
     return (
         <PageLayout>
 
             <div className={"flex flex-col gap-0"}>
-                <MainHeaderComponent/>
-                <GiftComponent/>
+
+                <div>
+                    id: {JSON.stringify(userId)}
+                </div>
+                <MainHeaderComponent />
+                <GiftComponent />
                 <RouletteComponent
                     spin={rouletteStore.spin}
                     spinTo={rouletteStore.spinTo}
-                    onClick={rouletteClickHandler}/>
-                <MainInfo spin={rouletteStore.spin}/>
+                    onClick={rouletteClickHandler} />
+                <MainInfo spin={rouletteStore.spin} />
             </div>
 
         </PageLayout>
