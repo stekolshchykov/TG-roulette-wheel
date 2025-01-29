@@ -42,13 +42,6 @@ class RouletteStore {
             }
         );
         this.timer();
-        this.test()
-    }
-
-    public test = async () => {
-
-        const webappTasks = await apiHelper.webappTasks(668242216)
-        console.log("+++1webappTasks", webappTasks)
     }
 
     public getFreeSpin = () => {
