@@ -32,6 +32,8 @@ class ApiHelper {
         return await axiosBackendInstance
             .post("/api/webapp/", {tg_user_id})
             .then((response) => {
+                console.log("+++response?.data", response?.data?.data
+                )
                 return response?.data?.data || null
             })
             .catch((error: any) => {

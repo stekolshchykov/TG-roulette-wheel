@@ -12,9 +12,6 @@ const Roulette = observer(() => {
     const {rouletteStore} = useRootStore()
 
 
-    // localStorage.setItem("spin", `${10}`)
-
-
     const rouletteClickHandler = () => {
         rouletteStore.spinNow()
     }
@@ -25,7 +22,6 @@ const Roulette = observer(() => {
 
     return (
         <PageLayout>
-
             <div className={"flex flex-col gap-0"}>
                 <MainHeaderComponent/>
                 <GiftComponent/>

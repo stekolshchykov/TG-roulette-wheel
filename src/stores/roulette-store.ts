@@ -15,7 +15,7 @@ const FREE_SPIN_TIME = 86400
 
 class RouletteStore {
 
-    public spin = 10; // Значение по умолчанию, совпадающее для SSR и CSR
+    public spin = 0;
     public loaded = false; // Загружены ли данные из localStorage
     public spinCounter = 0;
     public spinTo = [0, 0, 0]
@@ -44,6 +44,12 @@ class RouletteStore {
         this.timer();
     }
 
+    // load = async () => {
+    //     // const data = await apiHelper.webappTasks(tgHelper.getUserId())
+    //     // const data = await apiHelper.webapp(668242216)
+    //     // console.log("+++data", data)
+    // }
+
     public getFreeSpin = () => {
         this.spin += 1
         this.timeLeft = FREE_SPIN_TIME;
@@ -63,46 +69,19 @@ class RouletteStore {
 
         const diapazone = {
             zero: {
-                inner: {
-                    from: 131,
-                    to: 178,
-                },
-                middle: {
-                    from: 70,
-                    to: 113,
-                },
-                outer: {
-                    from: 31,
-                    to: 52,
-                }
+                inner: {from: 131, to: 178},
+                middle: {from: 70, to: 113},
+                outer: {from: 31, to: 52}
             },
             fiveK: {
-                inner: {
-                    from: 30,
-                    to: 75,
-                },
-                middle: {
-                    from: 160,
-                    to: 200,
-                },
-                outer: {
-                    from: 10,
-                    to: 30,
-                }
+                inner: {from: 30, to: 75},
+                middle: {from: 160, to: 200},
+                outer: {from: 10, to: 30}
             },
             iphone: {
-                inner: {
-                    from: 131,
-                    to: 178,
-                },
-                middle: {
-                    from: 70,
-                    to: 113,
-                },
-                outer: {
-                    from: 78,
-                    to: 101,
-                }
+                inner: {from: 131, to: 178},
+                middle: {from: 70, to: 113,},
+                outer: {from: 78, to: 101}
             }
         }
 
@@ -134,7 +113,8 @@ class RouletteStore {
     };
 
     public load = async () => {
-        const tg_user_id = tgHelper.getUserId();
+        // TODO: remove after test
+        const tg_user_id = tgHelper.getUserId() || 668242216
         const dataRaw: ApiWebappReponseI | null = await apiHelper.webapp(tg_user_id)
         if (dataRaw) {
             this.spin = dataRaw.available_spins || 0
