@@ -24,8 +24,14 @@ const MainInfo = observer((props: { spin: number }) => {
                         <Image src="/icon/spin.svg" alt="icon" width={8} height={8}/>
                         <div>3 вращения</div>
                     </div>
-                    <ButtonUi size={"normal"} width={150} onClick={() => {
-                    }}>Получить</ButtonUi>
+                    <ButtonUi
+                        size={"normal"}
+                        width={150}
+                        isDisabled={!rouletteStore.is_referral_bonus_available}
+                        onClick={() => rouletteStore.getBonus()}>
+                        Получить
+                    </ButtonUi>
+
                 </div>
                 <div className="rounded-xl bg-[#4E4E4E]/15 py-4 flex justify-center items-center w-full flex-col">
                     <div className="text-white text-base text-[13px] flex items-center gap-1">

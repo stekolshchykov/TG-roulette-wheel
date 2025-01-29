@@ -6,6 +6,7 @@ interface Props {
     type?: "accent";
     width?: number;
     onClick?: () => void
+    isDisabled?: boolean;
 }
 
 const ButtonUi = (props: Props) => {
@@ -46,8 +47,10 @@ const ButtonUi = (props: Props) => {
         <button
             className={`
                 block w-full rounded-[50px] overflow-hidden transition-all duration-300
+                  disabled:opacity-40
                ${props.onClick && "hover:scale-105 hover:brightness-110 active:scale-95 active:brightness-90"} 
             `}
+            disabled={props.isDisabled}
             style={{width: style.width, height: style.height}}
             onClick={() => {
                 if (props.onClick) {

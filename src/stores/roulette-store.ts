@@ -21,36 +21,29 @@ class RouletteStore {
     public spinTo = [0, 0, 0]
     public modal: "5k" | "iphone" | "" = ""
 
-    public timeLeft = 0;
-
     public free_spin_at = 0;
+    public is_referral_bonus_available = false;
 
     constructor(public rootStore: RootStore) {
         makeAutoObservable(this);
     }
 
     public getFreeSpin = async () => {
-        // this.spin += 1
-        // this.timeLeft = FREE_SPIN_TIME;
         const tg_user_id = tgHelper.getUserId() || 668242216
-        const freeSpine = await apiHelper.webappFreeSpin(tg_user_id)
-        console.log("+++freeSpine", freeSpine)
-
+        await apiHelper.webappFreeSpin(tg_user_id)
         this.load()
     }
 
     public spinNow = async () => {
-
         if (this.spin <= 0) return
-
-
+        //
         this.spin--;
         this.spinCounter++;
-
+        //
         const getRandomNumber = (min: number, max: number): number => {
             return Math.floor(Math.random() * (max - min + 1)) + min + (360 * Number.parseInt(`${(Math.random() * 10) / 4}`));
         };
-
+        //
         const diapazone = {
             zero: {
                 inner: {from: 131, to: 178},
@@ -103,12 +96,19 @@ class RouletteStore {
         if (dataRaw) {
             this.spin = dataRaw.available_spins || 0
             this.free_spin_at = new Date(dataRaw?.free_spin_at).getTime()
+            dataRaw.is_referral_bonus_available = dataRaw.is_referral_bonus_available
         }
 
         ///////////////////////
 
         this.loaded = true
     };
+
+    public getBonus = async () => {
+        const tg_user_id = tgHelper.getUserId() || 668242216
+        await apiHelper.webappReferralBonus(tg_user_id)
+        this.load()
+    }
 
 
 }
