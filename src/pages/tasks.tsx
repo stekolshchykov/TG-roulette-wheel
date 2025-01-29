@@ -6,19 +6,17 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const Task = (props: TaskDataI) => {
-
+const TaskSubscribed = (props: TaskDataI) => {
     return <div
-        className="relative border-[0.68px] border-[#202023] rounded-[16.34px] h-[55px] flex items-center justify-between px-1">
-        <div className="flex items-center ">
-            <div className="relative w-20 h-20">
-                <div className="absolute -left-3">
+        className="relative border-[0.68px] border-[#202023] rounded-[16.34px] h-[55px] flex items-center justify-between px-4">
+        <div className="flex items-center gap-x-3">
+            <div className="relative w-12 h-12">
+                <div className="absolute -top-2 -left-4 ">
                     <Image src={"/icon/question2.svg"} alt={""} height={76} width={76}/>
                 </div>
             </div>
-            <div className="flex flex-col"><p className="text-[13px] font-bold leading-[16px]">
-                {props.title}
-            </p>
+            <div className="flex flex-col">
+                <p className="text-[13px] font-bold leading-[16px]">{props.title}</p>
                 <p className="text-[11px] leading-[11px] opacity-50">+{props.reward} Вращение</p>
             </div>
         </div>
@@ -31,8 +29,28 @@ const Task = (props: TaskDataI) => {
             </div>
         </button>
     </div>
-
 }
+
+const TaskUnsubscribed = (props: TaskDataI) => {
+    return <div
+        className="relative border-[0.68px] border-[#202023] rounded-[16.34px] h-[55px] flex items-center justify-between px-4">
+        <div className="flex items-center gap-x-3">
+            <div className="relative w-12 h-12">
+                <div className="absolute -top-2 -left-4 grayscale">
+                    <Image src={"/icon/question2.svg"} alt={""} height={76} width={76}/>
+                </div>
+            </div>
+            <div className="flex flex-col">
+                <p className="text-[13px] font-bold leading-[16px]">{props.title}</p>
+                <p className="text-[11px] leading-[11px] opacity-50">+{props.reward} Вращение</p>
+            </div>
+        </div>
+        <div className="grayscale mr-3">
+            <Image src={"/icon/checkMark.svg"} alt={""} height={30} width={30}/>
+        </div>
+    </div>
+}
+
 
 const Tasks = observer(() => {
 
@@ -81,12 +99,19 @@ const Tasks = observer(() => {
             className="text-[20px] font-bold leading-[24px] mt-3">Задания</p>
             <div className="flex flex-col gap-y-2 mt-2 ">
                 {tasksStore.data.map((task, key) =>
-                    <Task
-                        key={key}
-                        reward={task.reward}
-                        title={task.title}
-                        link={task.link}/>
-                )}
+                    task.is_subscribed
+                        ? <TaskUnsubscribed
+                            key={key}
+                            reward={task.reward}
+                            title={task.title}
+                            link={task.link}
+                            is_subscribed={task.is_subscribed}/>
+                        : <TaskSubscribed
+                            key={key}
+                            reward={task.reward}
+                            title={task.title}
+                            link={task.link}
+                            is_subscribed={task.is_subscribed}/>)}
             </div>
         </div>
 

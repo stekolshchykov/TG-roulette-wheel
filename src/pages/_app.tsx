@@ -1,4 +1,5 @@
 import MainLayout from "@/layout/main-layout";
+import envHelper from "@/libs/env-helper";
 import {RootStoreProvider} from "@/providers/RootStoreProvider";
 import type {AppProps} from "next/app";
 import {useRouter} from "next/router";
@@ -19,7 +20,7 @@ function MyApp({Component, pageProps}: AppProps) {
     const router = useRouter();
 
     useEffect(() => {
-        if (!isMobile() && router.pathname !== "/game-restriction") {
+        if (!isMobile() && router.pathname !== "/game-restriction" && envHelper.mode === "production") {
             router.replace("/game-restriction");
         }
     }, [router.pathname]);

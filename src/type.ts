@@ -7,6 +7,7 @@ export interface TaskDataI {
     title: string
     reward: number
     link: string
+    is_subscribed: boolean
 }
 
 export interface ApiWebappReponseI {
@@ -25,4 +26,3 @@ export interface ApiWebappReponseI {
         bp: number
     }[]
 }
-

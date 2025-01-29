@@ -1,3 +1,4 @@
+import apiHelper from "@/libs/api-helper";
 import {RootStore} from "@/stores/root-store";
 import {TaskDataI} from "@/type";
 import {makeAutoObservable} from "mobx";
@@ -13,65 +14,9 @@ class TasksStore {
         makeAutoObservable(this);
     }
 
-    private load = () => {
-        // TODO: Logic
-        this.data = [
-            {
-                title: "Подпишись на канал",
-                reward: 1,
-                link: "https://v2.wbruletka.games/tasks"
-            },
-            {
-                title: "Подпишись на канал",
-                reward: 1,
-                link: "https://v2.wbruletka.games/tasks"
-            },
-            {
-                title: "Подпишись на канал",
-                reward: 1,
-                link: "https://v2.wbruletka.games/tasks"
-            },
-            {
-                title: "Подпишись на канал",
-                reward: 1,
-                link: "https://v2.wbruletka.games/tasks"
-            },
-            {
-                title: "Подпишись на канал",
-                reward: 1,
-                link: "https://v2.wbruletka.games/tasks"
-            },
-            {
-                title: "Подпишись на канал",
-                reward: 1,
-                link: "https://v2.wbruletka.games/tasks"
-            },
-            {
-                title: "Подпишись на канал",
-                reward: 1,
-                link: "https://v2.wbruletka.games/tasks"
-            },
-            {
-                title: "Подпишись на канал",
-                reward: 1,
-                link: "https://v2.wbruletka.games/tasks"
-            },
-            {
-                title: "Подпишись на канал",
-                reward: 1,
-                link: "https://v2.wbruletka.games/tasks"
-            },
-            {
-                title: "Подпишись на канал",
-                reward: 1,
-                link: "https://v2.wbruletka.games/tasks"
-            },
-            {
-                title: "Подпишись на канал",
-                reward: 1,
-                link: "https://v2.wbruletka.games/tasks"
-            },
-        ]
+    private load = async () => {
+        // TODO: used id needed
+        this.data = await apiHelper.webappTasks(668242216) || []
     }
 
 }
