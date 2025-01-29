@@ -16,8 +16,6 @@ class TasksStore {
     }
 
     private load = async () => {
-        // TODO: used id needed
-        alert(tgHelper.getUserId())
         this.data = await apiHelper.webappTasks(tgHelper.getUserId()) || []
     }
 

@@ -3,11 +3,9 @@ import MainHeaderComponent from "@/components/main-header-component";
 import MainInfo from "@/components/main-info";
 import RouletteComponent from "@/components/roulette-component";
 import PageLayout from "@/layout/page-layout";
-import apiHelper from "@/libs/api-helper";
-import tgHelper from "@/libs/tg-helper";
 import {useRootStore} from "@/providers/RootStoreProvider";
 import {observer} from "mobx-react-lite";
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 
 const Roulette = observer(() => {
 
@@ -25,34 +23,10 @@ const Roulette = observer(() => {
         rouletteStore.load()
     }, [rouletteStore]);
 
-    const [webappTasks, setWebappTasks] = useState<any>();
-    const getUserId = tgHelper?.getUserId()
-
-    const load = async () => {
-        const webappTasks = await apiHelper.webappTasks(getUserId)
-        console.log("+++webappTasks", webappTasks)
-        setWebappTasks(webappTasks)
-    }
-
-    useEffect(() => {
-        if (getUserId) {
-            load()
-        }
-    }, [getUserId]);
-
     return (
         <PageLayout>
 
             <div className={"flex flex-col gap-0"}>
-
-                <div>
-                    id: {getUserId}
-                </div>
-
-                <div>
-                    webappTasks: {webappTasks}
-                </div>
-
                 <MainHeaderComponent/>
                 <GiftComponent/>
                 <RouletteComponent
