@@ -44,16 +44,13 @@ class ApiHelper {
      * POST /api/webapp/spin/ - відправити запит щоб зарахувало прокручений спін
      * @param tg_user_id
      */
-    webappSpin = async (tg_user_id: number): Promise<any> => {
+    webappSpin = async (tg_user_id: number): Promise<boolean> => {
         return await axiosBackendInstance
             .post("/api/webapp/spin/", {tg_user_id})
-            .then((response) => {
-                console.log("+++webappSpin response", response)
-                return null
-            })
+            .then(() => true)
             .catch((error) => {
                 console.log("webappSpin error", error)
-                return null
+                return false
             })
     }
 

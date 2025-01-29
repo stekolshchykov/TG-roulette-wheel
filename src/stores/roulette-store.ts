@@ -49,9 +49,10 @@ class RouletteStore {
         this.timeLeft = FREE_SPIN_TIME;
     }
 
-    public spinNow = () => {
+    public spinNow = async () => {
 
         if (this.spin <= 0) return
+
 
         this.spin--;
         this.spinCounter++;
@@ -105,15 +106,6 @@ class RouletteStore {
             }
         }
 
-        // if (this.spinCounter % 6 === 0) {
-        //     this.spinTo = [
-        //         getRandomNumber(diapazone.zero.inner.from, diapazone.zero.inner.to),
-        //         getRandomNumber(diapazone.zero.middle.from, diapazone.zero.middle.to),
-        //         getRandomNumber(diapazone.iphone.outer.from, diapazone.iphone.outer.to)
-        //     ]
-        //     this.modal = ""
-        // } else
-
         if (this.spinCounter % 3 === 0) {
             const random = Math.floor(Math.random() * 3) + 1
             this.spinTo = [
@@ -136,6 +128,8 @@ class RouletteStore {
             ]
             this.modal = ""
         }
+
+        await apiHelper.webappSpin(tgHelper.getUserId())
 
     };
 
