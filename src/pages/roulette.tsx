@@ -20,6 +20,7 @@ const Roulette = observer(() => {
         rouletteStore.load()
     }, [rouletteStore]);
 
+
     return (
         <PageLayout>
             <div className={"flex flex-col gap-0"}>

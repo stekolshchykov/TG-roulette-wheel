@@ -2,7 +2,7 @@ import apiHelper from "@/libs/api-helper";
 import tgHelper from "@/libs/tg-helper";
 import {RootStore} from "@/stores/root-store";
 import {ApiWebappReponseI} from "@/type";
-import {makeAutoObservable, reaction} from "mobx";
+import {makeAutoObservable} from "mobx";
 // import { makeAutoObservable, reaction } from "mobx";
 
 declare global {
@@ -23,36 +23,20 @@ class RouletteStore {
 
     public timeLeft = 0;
 
+    public free_spin_at = 0;
+
     constructor(public rootStore: RootStore) {
         makeAutoObservable(this);
-        reaction(
-            () => this.spin,
-            (count, countOld) => {
-                if (this.loaded && countOld !== count) {
-                    this.save();
-                }
-            }
-        );
-        reaction(
-            () => this.timeLeft,
-            () => {
-                if (this.loaded) {
-                    this.save();
-                }
-            }
-        );
-        this.timer();
     }
 
-    // load = async () => {
-    //     // const data = await apiHelper.webappTasks(tgHelper.getUserId())
-    //     // const data = await apiHelper.webapp(668242216)
-    //     // console.log("+++data", data)
-    // }
+    public getFreeSpin = async () => {
+        // this.spin += 1
+        // this.timeLeft = FREE_SPIN_TIME;
+        const tg_user_id = tgHelper.getUserId() || 668242216
+        const freeSpine = await apiHelper.webappFreeSpin(tg_user_id)
+        console.log("+++freeSpine", freeSpine)
 
-    public getFreeSpin = () => {
-        this.spin += 1
-        this.timeLeft = FREE_SPIN_TIME;
+        this.load()
     }
 
     public spinNow = async () => {
@@ -118,24 +102,14 @@ class RouletteStore {
         const dataRaw: ApiWebappReponseI | null = await apiHelper.webapp(tg_user_id)
         if (dataRaw) {
             this.spin = dataRaw.available_spins || 0
+            this.free_spin_at = new Date(dataRaw?.free_spin_at).getTime()
         }
+
+        ///////////////////////
+
         this.loaded = true
     };
 
-    private timer = () => {
-        setInterval(() => {
-            if (this.timeLeft > 0) {
-                this.timeLeft--;
-            }
-        }, 1000)
-    }
-
-    private save = () => {
-        if (typeof window !== "undefined" && localStorage) {
-            localStorage.setItem("spin", `${this.spin}`);
-            localStorage.setItem("timeLeft", `${this.timeLeft}`);
-        }
-    };
 
 }
 

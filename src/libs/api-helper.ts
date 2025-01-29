@@ -32,8 +32,21 @@ class ApiHelper {
         return await axiosBackendInstance
             .post("/api/webapp/", {tg_user_id})
             .then((response) => {
-                console.log("+++response?.data", response?.data?.data
-                )
+
+                // {
+                //     available_spins: 4,
+                //     free_spin_at:"2025-01-18T19:26:21.249Z",
+                //     friends:[]
+                //     gift_at:"2025-01-30T16:26:21Z"
+                //     gift_link:"https://www.google.com.ua/"
+                //     is_referral_bonus_available:false
+                //     is_referral_bonus_used:false
+                //     partner_card_link:"https://www.google.com.ua/"
+                //     referral_count:0
+                //     spin_prize_link:"https://www.google.com.ua/"
+                //     used_spins:11
+                // }
+              
                 return response?.data?.data || null
             })
             .catch((error: any) => {

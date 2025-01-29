@@ -1,20 +1,51 @@
+import {useRootStore} from "@/providers/RootStoreProvider";
 import ButtonUi from "@/ui/button-ui";
-import React, { useEffect, useState } from "react";
-import { observer } from "mobx-react-lite";
-import { useRootStore } from "@/providers/RootStoreProvider";
+import {observer} from "mobx-react-lite";
+import React, {useEffect, useState} from "react";
 
 interface Props {
-    timeLeft?: number
-    size?: "normal" | "small"
+    size?: "normal" | "small";
 }
 
-const CountdownTimerComponent = observer((props: Props) => {
+const CountdownTimerComponent = observer(({size = "normal"}: Props) => {
+    const {rouletteStore} = useRootStore();
+    const [timeLeft, setTimeLeft] = useState<number | null>(null);
 
-    const { rouletteStore } = useRootStore()
+    // useEffect(() => {
+    //     if (rouletteStore?.free_spin_at) {
+    //         const updateCountdown = () => {
+    //             const now = Date.now();
+    //             const remainingTime = Math.max(0, rouletteStore.free_spin_at - now);
+    //             setTimeLeft(Math.floor(remainingTime / 1000));
+    //         };
+    //
+    //         updateCountdown();
+    //         const interval = setInterval(updateCountdown, 1000);
+    //
+    //         return () => clearInterval(interval);
+    //     }
+    //
+    // }, [rouletteStore?.free_spin_at]);
+
+    useEffect(() => {
+        const updateCountdown = () => {
+            const now = Date.now();
+            const remainingTime = Math.max(0, rouletteStore.free_spin_at - now);
+
+            // console.log("+++rouletteStore?.free_spin_at", rouletteStore?.free_spin_at)
+            // console.log("+++Math.floor(remainingTime / 1000)", Math.floor(remainingTime / 1000))
 
 
+            setTimeLeft(Math.floor(remainingTime / 1000));
+        };
 
-    const isTime = rouletteStore.timeLeft > 0
+
+        updateCountdown();
+        const interval = setInterval(updateCountdown, 1000);
+
+        return () => clearInterval(interval);
+
+    }, []);
 
     const formatTime = (seconds: number) => {
         const hours = String(Math.floor(seconds / 3600)).padStart(2, '0');
@@ -24,33 +55,19 @@ const CountdownTimerComponent = observer((props: Props) => {
     };
 
     const getFreeSpinHandler = () => {
-        if (!isTime) {
-            rouletteStore.getFreeSpin()
+        if (!timeLeft || timeLeft <= 0) {
+            rouletteStore.getFreeSpin();
         }
-    }
+    };
 
-    // useEffect(() => {
-    //     const interval = setInterval(() => {
-    //         // setTimeLeft(.prevTime => prevTime - 1);
-    //         rouletteStore.timeLeft =-1
-    //     }, 1000);
-    //     return () => clearInterval(interval);
-    // }, []);
-
-    if (props.size === "small")
-        return <ButtonUi
-            size={"small"}
+    return (
+        <ButtonUi
+            size={size}
             onClick={getFreeSpinHandler}
-            width={80}>
-            {isTime ? formatTime(rouletteStore.timeLeft) : "Получить"}
+            width={size === "small" ? 80 : 150}>
+            {timeLeft && timeLeft > 0 ? formatTime(timeLeft) : "Получить"}
         </ButtonUi>
-    else
-        return <ButtonUi
-            size={"normal"}
-            onClick={getFreeSpinHandler}
-            width={150}>
-            {isTime ? formatTime(rouletteStore.timeLeft) : "Получить"}
-        </ButtonUi>
-})
+    );
+});
 
-export default CountdownTimerComponent
+export default CountdownTimerComponent;

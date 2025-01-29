@@ -13,7 +13,7 @@ const RouletteComponent = (props: Props) => {
     const [rotationInner, setRotationInner] = useState(0);
     const [rotationMiddle, setRotationMiddle] = useState(0);
     const [rotationOuter, setRotationOuter] = useState(0);
-    
+
     const spinRoulette = (spinInner: number, spinMiddle: number, spinOuter: number) => {
         setRotationInner(spinInner);
 
@@ -37,7 +37,6 @@ const RouletteComponent = (props: Props) => {
         if ((props.spinTo[0] + props.spinTo[1] + props.spinTo[2]) !== 0) {
             spinRoulette(props.spinTo[0], props.spinTo[1], props.spinTo[2]);
         }
-        console.log(props.spinTo)
     }, [props.spinTo])
 
     return <>
