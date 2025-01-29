@@ -1,11 +1,11 @@
 class TgHelper {
 
-  getUserId = () => {
-    if (typeof window !== "undefined") {
-      const tg = window?.Telegram?.WebApp;
-      return tg?.initDataUnsafe?.user?.id || null;
+    getUserId = (): number => {
+        if (typeof window !== "undefined") {
+            const tg = window?.Telegram?.WebApp;
+            return tg?.initDataUnsafe?.user?.id || 0;
+        } else return 0
     }
-  }
 
 }
 
