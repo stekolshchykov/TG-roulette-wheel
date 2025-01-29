@@ -16,8 +16,16 @@ class TasksStore {
     }
 
     private load = async () => {
-        this.data = await apiHelper.webappTasks(tgHelper.getUserId()) || []
+        // TODO: remove after test
+        const tg_user_id = tgHelper.getUserId() || 668242216
+        this.data = await apiHelper.webappTasks(tg_user_id) || []
     }
+
+    /**
+     * 5. Вот это тоже не понял куда подставить
+     *      "partner_card_link": "https://www.google.com.ua/",
+     *         "spin_prize_link": "https://www.google.com.ua/",
+     */
 
 }
 

@@ -23,6 +23,7 @@ class RouletteStore {
 
     public free_spin_at = 0;
     public is_referral_bonus_available = false;
+    public partner_card_link = "";
 
     constructor(public rootStore: RootStore) {
         makeAutoObservable(this);
@@ -96,7 +97,8 @@ class RouletteStore {
         if (dataRaw) {
             this.spin = dataRaw.available_spins || 0
             this.free_spin_at = new Date(dataRaw?.free_spin_at).getTime()
-            dataRaw.is_referral_bonus_available = dataRaw.is_referral_bonus_available
+            this.is_referral_bonus_available = dataRaw.is_referral_bonus_available
+            this.partner_card_link = dataRaw.partner_card_link
         }
 
         ///////////////////////
@@ -105,6 +107,7 @@ class RouletteStore {
     };
 
     public getBonus = async () => {
+        // TODO: remove after test
         const tg_user_id = tgHelper.getUserId() || 668242216
         await apiHelper.webappReferralBonus(tg_user_id)
         this.load()
