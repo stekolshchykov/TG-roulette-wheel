@@ -1,4 +1,7 @@
+import tgHelper from "@/libs/tg-helper";
+import {useRootStore} from "@/providers/RootStoreProvider";
 import Modal from "@/ui/modal";
+import {observer} from "mobx-react-lite";
 import Image from "next/image";
 import React from "react";
 
@@ -7,7 +10,9 @@ interface Props {
     onAction: (status: boolean) => void
 }
 
-const GiftModal = (props: Props) => {
+const GiftModal = observer((props: Props) => {
+
+    const {dataStore} = useRootStore();
 
     return <Modal
         fullSize={false}
@@ -111,13 +116,15 @@ const GiftModal = (props: Props) => {
                 </div>
                 <div className="mx-auto">
                     <button
+                        onClick={() => tgHelper.openLink(dataStore.data.partner_card_link)}
                         className="p-px bg-gradient-to-t from-transparent from-70% to-[#F03AC2] rounded-[12.17px] mt-2 mx-auto z-50 active:scale-95 transition-transform"
                         style={{WebkitTapHighlightColor: "transparent", touchAction: "manipulation"}}
                     >
                         <div
                             className="flex items-center gap-x-1 bg-gradient-to-b from-[#E204A9] to-[#FE5FD6] w-[202px] justify-center h-[44px] rounded-[12px]">
-                            <p className="font-bold text-[17px] leading-[110%] tracking-[-2%]">Забрать
-                                подарок</p>
+                            <p className="font-bold text-[17px] leading-[110%] tracking-[-2%]">
+                                Забрать подарок
+                            </p>
                         </div>
                     </button>
                 </div>
@@ -125,5 +132,6 @@ const GiftModal = (props: Props) => {
         </div>
     </Modal>
 
-}
+})
+
 export default GiftModal

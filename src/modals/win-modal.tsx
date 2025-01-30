@@ -87,7 +87,9 @@ const WinModal = observer(() => {
                         >
                             <div
                                 className="flex items-center gap-x-1 bg-gradient-to-b from-[#E204A9] to-[#FE5FD6] w-[202px] justify-center h-[44px] rounded-[12px]">
-                                <p className="font-bold text-[17px] leading-[110%] tracking-[-2%]">Забрать подарок</p>
+                                <p className="font-bold text-[17px] leading-[110%] tracking-[-2%]">
+                                    Забрать
+                                    подарок</p>
                             </div>
                         </button>
                     </div>

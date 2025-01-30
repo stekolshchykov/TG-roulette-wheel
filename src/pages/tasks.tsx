@@ -1,9 +1,9 @@
 import PageLayout from "@/layout/page-layout";
+import tgHelper from "@/libs/tg-helper";
 import {useRootStore} from "@/providers/RootStoreProvider";
 import {TaskDataI} from "@/type";
 import {observer} from "mobx-react-lite";
 import Image from "next/image";
-import Link from "next/link";
 import React, {useEffect} from "react";
 
 const TaskSubscribed = (props: TaskDataI) => {
@@ -20,14 +20,16 @@ const TaskSubscribed = (props: TaskDataI) => {
                 <p className="text-[11px] leading-[11px] opacity-50">+{props.reward} Вращение</p>
             </div>
         </div>
-        <button className="p-px bg-gradient-to-t from-transparent from-70% to-[#F03AC2] rounded-xl">
+        <div className="p-px bg-gradient-to-t from-transparent from-70% to-[#F03AC2] rounded-xl">
             <div
                 className="flex items-center gap-x-1 bg-gradient-to-b from-[#E204A9] to-[#FE5FD6] px-4 h-8 rounded-xl">
-                <Link href={props.link} className="font-bold text-xs leading-[110%] tracking-[-2%] whitespace-nowrap">
+                <button
+                    onClick={() => tgHelper.openLink(props.link)}
+                    className="font-bold text-xs leading-[110%] tracking-[-2%] whitespace-nowrap">
                     Перейти
-                </Link>
+                </button>
             </div>
-        </button>
+        </div>
     </div>
 }
 
@@ -90,14 +92,14 @@ const Tasks = observer(() => {
                     </div>
                 </div>
                 <div className="flex justify-center w-full p-4">
-                    <Link href={dataStore.data.partner_card_link}
-                          className="w-[259px] p-px bg-gradient-to-t from-transparent from-70% to-[#F03AC2] rounded-[12.17px] mt-3">
+                    <div onClick={() => tgHelper.openLink(dataStore.data.partner_card_link)}
+                         className="w-[259px] p-px bg-gradient-to-t from-transparent from-70% to-[#F03AC2] rounded-[12.17px] mt-3">
                         <div
                             className="flex items-center gap-x-1 bg-gradient-to-b from-[#E204A9] to-[#FE5FD6] w-full justify-center h-[44px] rounded-[12px] ">
                             <p className="font-bold text-[14.75px] leading-[110%] tracking-[-2%]">Забрать
                                 карту</p>
                         </div>
-                    </Link>
+                    </div>
                 </div>
 
             </div>

@@ -24,10 +24,13 @@ const Friends = observer(() => {
             className="text-[32.14px] font-bold leading-[110%] tracking-[-2%]">Приглашай и вращай</p><p
             className="text-[10.71px] leading-[110%] tracking-[-2%] opacity-50 mt-1">За каждого друга вы получаете 1
             вращение</p>
-            <button className="p-px bg-gradient-to-t from-transparent from-70% to-[#F03AC2] rounded-[12.17px] mt-3">
+            <button
+                onClick={() => tgHelper.openLink(url)}
+                className="p-px bg-gradient-to-t from-transparent from-70% to-[#F03AC2] rounded-[12.17px] mt-3">
                 <div
                     className="flex items-center gap-x-1 bg-gradient-to-b from-[#E204A9] to-[#FE5FD6] w-[202px] justify-center h-[44px] rounded-[12px]">
-                    <p className="font-bold text-[17px] leading-[110%] tracking-[-2%]">Пригласить друга</p></div>
+                    <p className="font-bold text-[17px] leading-[110%] tracking-[-2%]">Пригласить друга</p>
+                </div>
             </button>
         </div>
 

@@ -9,6 +9,18 @@ class TgHelper {
         } else return this.TEST_USER_ID;
     }
 
+    openTelegramLink = (link: string): void => {
+        if (typeof window !== "undefined") {
+            window?.Telegram?.WebApp?.openTelegramLink(link)
+        }
+    }
+
+    openLink = (link: string): void => {
+        if (typeof window !== "undefined") {
+            window.Telegram.WebApp.openLink(link);
+        }
+    }
+
 }
 
 const tgHelper = new TgHelper();
