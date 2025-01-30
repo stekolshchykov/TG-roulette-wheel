@@ -17,7 +17,10 @@ const Friends = observer(() => {
 
     useEffect(() => {
         dataStore.load()
-    }, [dataStore]);
+    }, []);
+
+
+    console.log("+++dataStore.data.used_spins", dataStore.data.used_spins)
 
     return <PageLayout>
         <div className="relative z-10 flex flex-col items-center text-center"><p
@@ -56,7 +59,7 @@ const Friends = observer(() => {
                     <div className="border border-[#202023] rounded-2xl w-full h-[90px] relative overflow-hidden">
 
                         <p className="absolute top-[25%] left-1/2 -translate-x-1/2 text-3xl leading-9 font-bold">
-                            {friendsStore.data.length}
+                            {dataStore.data.friends.length}
                         </p>
                         <p className="absolute bottom-2 w-full text-sm font-bold leading-4 text-center">
                             Всего друзей
@@ -83,21 +86,21 @@ const Friends = observer(() => {
         <div className="border-t border-[#202023] mt-4 rounded-t-3xl flex flex-col"><p
             className="text-[20px] font-bold leading-[24px] ml-4 mt-3">Друзья</p>
             <div className="flex items-center justify-center relative">
-                {friendsStore.data.length === 0 && <>
+                {dataStore.data.friends.length === 0 && <>
                     <Image src={"/icon/users.svg"} alt={"icon"} width={79} height={79}/>
                     <Image src={"/icon/users.svg"} alt={"icon"} width={79}
                            className={"opacity-75 absolute blur-[24.6px]"}
                            height={79}/>
                 </>}
             </div>
-            {friendsStore.data.length === 0 &&
+            {dataStore.data.friends.length === 0 &&
                 <div className="flex flex-col items-center justify-center mt-2 gap-y-2"><p
                     className="text-[25px] font-bold leading-[30px]">Пока пусто</p><p
                     className="text-[13px] leading-[16px] text-center opacity-10">Здесь будет список друзей,
                     которых <br/> вы пригласили</p></div>}
-            {friendsStore.data.length !== 0 &&
+            {dataStore.data.friends.length !== 0 &&
                 <ul className="flex flex-col items-center justify-center mt-2 gap-y-2 px-4 mt-4">
-                    {friendsStore.data.map(friend => {
+                    {dataStore.data.friends.map(friend => {
                         return <li key={friend.name + friend.bp} className={"w-full flex justify-between text-[13px]"}>
                             <div className={"flex gap-1 items-center"}>
                                 <div className={`
