@@ -6,7 +6,7 @@ import Image from "next/image";
 
 const Friends = observer(() => {
 
-    const {friendsStore} = useRootStore()
+    const {friendsStore, rouletteStore} = useRootStore()
 
     const url = `https://t.me/Ruletkawinbot?start=ref_${tgHelper.getUserId()}`
 
@@ -63,7 +63,7 @@ const Friends = observer(() => {
                 <div className="relative w-full">
                     <div className="border border-[#202023] rounded-2xl w-full h-[90px] relative overflow-hidden">
                         <p className="absolute top-[25%] left-1/2 -translate-x-1/2 text-3xl leading-9 font-bold">
-                            {friendsStore.data.length}
+                            {rouletteStore.used_spins}
                         </p>
                         <p
                             className="absolute bottom-2 w-full text-sm font-bold leading-4 text-center">Вращения</p>

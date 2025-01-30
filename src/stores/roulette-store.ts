@@ -22,6 +22,7 @@ class RouletteStore {
     public modal: "5k" | "iphone" | "" = ""
 
     public free_spin_at = 0;
+    public used_spins = 0;
     public is_referral_bonus_available = false;
     public partner_card_link = "";
 
@@ -96,6 +97,7 @@ class RouletteStore {
             this.free_spin_at = new Date(dataRaw?.free_spin_at).getTime()
             this.is_referral_bonus_available = dataRaw.is_referral_bonus_available
             this.partner_card_link = dataRaw.partner_card_link
+            this.used_spins = dataRaw.used_spins
         }
 
         ///////////////////////
