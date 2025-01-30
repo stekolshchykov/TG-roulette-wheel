@@ -30,8 +30,7 @@ class RouletteStore {
     }
 
     public getFreeSpin = async () => {
-        const tg_user_id = tgHelper.getUserId() || 668242216
-        await apiHelper.webappFreeSpin(tg_user_id)
+        await apiHelper.webappFreeSpin(tgHelper.getUserId())
         this.load()
     }
 
@@ -91,9 +90,7 @@ class RouletteStore {
     };
 
     public load = async () => {
-        // TODO: remove after test
-        const tg_user_id = tgHelper.getUserId() || 668242216
-        const dataRaw: ApiWebappReponseI | null = await apiHelper.webapp(tg_user_id)
+        const dataRaw: ApiWebappReponseI | null = await apiHelper.webapp(tgHelper.getUserId())
         if (dataRaw) {
             this.spin = dataRaw.available_spins || 0
             this.free_spin_at = new Date(dataRaw?.free_spin_at).getTime()
@@ -107,9 +104,7 @@ class RouletteStore {
     };
 
     public getBonus = async () => {
-        // TODO: remove after test
-        const tg_user_id = tgHelper.getUserId() || 668242216
-        await apiHelper.webappReferralBonus(tg_user_id)
+        await apiHelper.webappReferralBonus(tgHelper.getUserId())
         this.load()
     }
 

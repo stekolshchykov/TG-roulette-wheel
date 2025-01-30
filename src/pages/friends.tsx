@@ -1,4 +1,5 @@
 import PageLayout from "@/layout/page-layout";
+import tgHelper from "@/libs/tg-helper";
 import {useRootStore} from "@/providers/RootStoreProvider";
 import {observer} from "mobx-react-lite";
 import Image from "next/image";
@@ -7,7 +8,7 @@ const Friends = observer(() => {
 
     const {friendsStore} = useRootStore()
 
-    const url = "https://t.me/Ruletkawinbot?start=ref_375462975"
+    const url = `https://t.me/Ruletkawinbot?start=ref_${tgHelper.getUserId()}`
 
     const onCopyHandler = () => {
         navigator.clipboard.writeText(url)

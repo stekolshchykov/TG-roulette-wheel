@@ -16,9 +16,7 @@ class TasksStore {
     }
 
     private load = async () => {
-        // TODO: remove after test
-        const tg_user_id = tgHelper.getUserId() || 668242216
-        this.data = await apiHelper.webappTasks(tg_user_id) || []
+        this.data = await apiHelper.webappTasks(tgHelper.getUserId()) || []
     }
 
     /**
