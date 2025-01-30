@@ -46,7 +46,7 @@ class ApiHelper {
                 //     spin_prize_link:"https://www.google.com.ua/"
                 //     used_spins:11
                 // }
-              
+
                 return response?.data?.data || null
             })
             .catch((error: any) => {
@@ -76,13 +76,10 @@ class ApiHelper {
     webappReferralBonus = async (tg_user_id: number): Promise<any> => {
         return await axiosBackendInstance
             .post("/api/webapp/referral-bonus/", {tg_user_id})
-            .then((response) => {
-                console.log("+++webappReferralBonus response", response)
-                return null
-            })
+            .then(() => true)
             .catch((error) => {
                 console.log("webappReferralBonus error", error)
-                return null
+                return false
             })
     }
 
@@ -93,13 +90,10 @@ class ApiHelper {
     webappFreeSpin = async (tg_user_id: number): Promise<any> => {
         return await axiosBackendInstance
             .post("/api/webapp/free-spin/", {tg_user_id})
-            .then((response) => {
-                console.log("+++webappFreeSpin response", response)
-                return null
-            })
+            .then(() => true)
             .catch((error) => {
                 console.log("webappFreeSpin error", error)
-                return null
+                return false
             })
     }
 

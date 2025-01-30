@@ -35,7 +35,7 @@ class DataStore {
     load = async () => {
         this.dataRaw = await apiHelper.webapp(tgHelper.getUserId())
 
-        console.log("++this.dataRaw", toJS(this.dataRaw?.friends))
+        console.log("+++this.dataRaw", toJS(this.dataRaw))
 
         ///////////////////////
 

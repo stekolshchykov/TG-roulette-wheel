@@ -7,7 +7,7 @@ import {useEffect} from "react";
 
 const Friends = observer(() => {
 
-    const {friendsStore, dataStore} = useRootStore()
+    const {dataStore} = useRootStore()
 
     const url = `https://t.me/Ruletkawinbot?start=ref_${tgHelper.getUserId()}`
 
@@ -18,9 +18,6 @@ const Friends = observer(() => {
     useEffect(() => {
         dataStore.load()
     }, []);
-
-
-    console.log("+++dataStore.data.used_spins", dataStore.data.used_spins)
 
     return <PageLayout>
         <div className="relative z-10 flex flex-col items-center text-center"><p
