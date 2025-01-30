@@ -9,16 +9,15 @@ import React, {useEffect} from "react";
 
 const Roulette = observer(() => {
 
-    const {rouletteStore} = useRootStore()
-
+    const {rouletteStore, dataStore} = useRootStore()
 
     const rouletteClickHandler = () => {
         rouletteStore.spinNow()
     }
 
     useEffect(() => {
-        rouletteStore.load()
-    }, [rouletteStore]);
+        dataStore.load()
+    }, [dataStore]);
 
 
     return (
@@ -27,10 +26,10 @@ const Roulette = observer(() => {
                 <MainHeaderComponent/>
                 <GiftComponent/>
                 <RouletteComponent
-                    spin={rouletteStore.spin}
+                    spin={dataStore.data.spin}
                     spinTo={rouletteStore.spinTo}
                     onClick={rouletteClickHandler}/>
-                <MainInfo spin={rouletteStore.spin}/>
+                <MainInfo spin={dataStore.data.spin}/>
             </div>
 
         </PageLayout>

@@ -1,3 +1,9 @@
+declare global {
+    interface Window {
+        Telegram: any;
+    }
+}
+
 export interface FriendDataI {
     name: string
     bp: number

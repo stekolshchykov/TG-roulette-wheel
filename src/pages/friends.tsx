@@ -3,16 +3,21 @@ import tgHelper from "@/libs/tg-helper";
 import {useRootStore} from "@/providers/RootStoreProvider";
 import {observer} from "mobx-react-lite";
 import Image from "next/image";
+import {useEffect} from "react";
 
 const Friends = observer(() => {
 
-    const {friendsStore, rouletteStore} = useRootStore()
+    const {friendsStore, dataStore} = useRootStore()
 
     const url = `https://t.me/Ruletkawinbot?start=ref_${tgHelper.getUserId()}`
 
     const onCopyHandler = () => {
         navigator.clipboard.writeText(url)
     }
+
+    useEffect(() => {
+        dataStore.load()
+    }, [dataStore]);
 
     return <PageLayout>
         <div className="relative z-10 flex flex-col items-center text-center"><p
@@ -63,7 +68,7 @@ const Friends = observer(() => {
                 <div className="relative w-full">
                     <div className="border border-[#202023] rounded-2xl w-full h-[90px] relative overflow-hidden">
                         <p className="absolute top-[25%] left-1/2 -translate-x-1/2 text-3xl leading-9 font-bold">
-                            {rouletteStore.used_spins}
+                            {dataStore.data.used_spins}
                         </p>
                         <p
                             className="absolute bottom-2 w-full text-sm font-bold leading-4 text-center">Вращения</p>

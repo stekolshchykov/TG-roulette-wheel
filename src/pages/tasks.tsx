@@ -4,7 +4,7 @@ import {TaskDataI} from "@/type";
 import {observer} from "mobx-react-lite";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, {useEffect} from "react";
 
 const TaskSubscribed = (props: TaskDataI) => {
     return <div
@@ -54,7 +54,11 @@ const TaskUnsubscribed = (props: TaskDataI) => {
 
 const Tasks = observer(() => {
 
-    const {tasksStore, rouletteStore} = useRootStore()
+    const {tasksStore, dataStore} = useRootStore()
+
+    useEffect(() => {
+        dataStore.load()
+    }, [dataStore]);
 
     return <PageLayout>
 
@@ -86,7 +90,7 @@ const Tasks = observer(() => {
                     </div>
                 </div>
                 <div className="flex justify-center w-full p-4">
-                    <Link href={rouletteStore.partner_card_link}
+                    <Link href={dataStore.data.partner_card_link}
                           className="w-[259px] p-px bg-gradient-to-t from-transparent from-70% to-[#F03AC2] rounded-[12.17px] mt-3">
                         <div
                             className="flex items-center gap-x-1 bg-gradient-to-b from-[#E204A9] to-[#FE5FD6] w-full justify-center h-[44px] rounded-[12px] ">

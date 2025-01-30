@@ -1,30 +1,13 @@
 import apiHelper from "@/libs/api-helper";
 import tgHelper from "@/libs/tg-helper";
 import {RootStore} from "@/stores/root-store";
-import {ApiWebappReponseI} from "@/type";
 import {makeAutoObservable} from "mobx";
-// import { makeAutoObservable, reaction } from "mobx";
-
-declare global {
-    interface Window {
-        Telegram: any;
-    }
-}
-
-const FREE_SPIN_TIME = 86400
 
 class RouletteStore {
 
-    public spin = 0;
-    public loaded = false; // Загружены ли данные из localStorage
     public spinCounter = 0;
     public spinTo = [0, 0, 0]
     public modal: "5k" | "iphone" | "" = ""
-
-    public free_spin_at = 0;
-    public used_spins = 0;
-    public is_referral_bonus_available = false;
-    public partner_card_link = "";
 
     constructor(public rootStore: RootStore) {
         makeAutoObservable(this);
@@ -32,13 +15,13 @@ class RouletteStore {
 
     public getFreeSpin = async () => {
         await apiHelper.webappFreeSpin(tgHelper.getUserId())
-        this.load()
+        this.rootStore.dataStore.load()
     }
 
     public spinNow = async () => {
-        if (this.spin <= 0) return
+        if (this.rootStore.dataStore.data.spin <= 0) return
         //
-        this.spin--;
+        this.rootStore.dataStore.data.spin--;
         this.spinCounter++;
         //
         const getRandomNumber = (min: number, max: number): number => {
@@ -90,24 +73,9 @@ class RouletteStore {
 
     };
 
-    public load = async () => {
-        const dataRaw: ApiWebappReponseI | null = await apiHelper.webapp(tgHelper.getUserId())
-        if (dataRaw) {
-            this.spin = dataRaw.available_spins || 0
-            this.free_spin_at = new Date(dataRaw?.free_spin_at).getTime()
-            this.is_referral_bonus_available = dataRaw.is_referral_bonus_available
-            this.partner_card_link = dataRaw.partner_card_link
-            this.used_spins = dataRaw.used_spins
-        }
-
-        ///////////////////////
-
-        this.loaded = true
-    };
-
     public getBonus = async () => {
         await apiHelper.webappReferralBonus(tgHelper.getUserId())
-        this.load()
+        this.rootStore.dataStore.load()
     }
 
 

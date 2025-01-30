@@ -7,7 +7,7 @@ import React from "react";
 
 const MainInfo = observer((props: { spin: number }) => {
 
-    const {rouletteStore} = useRootStore()
+    const {rouletteStore, dataStore} = useRootStore()
 
     return (
         <div className="px-4 mb-[75px] space-y-[6px] flex-shrink-0">
@@ -27,7 +27,7 @@ const MainInfo = observer((props: { spin: number }) => {
                     <ButtonUi
                         size={"normal"}
                         width={150}
-                        isDisabled={!rouletteStore.is_referral_bonus_available}
+                        isDisabled={!dataStore.data.is_referral_bonus_available}
                         onClick={() => rouletteStore.getBonus()}>
                         Получить
                     </ButtonUi>
