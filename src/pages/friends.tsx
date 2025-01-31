@@ -9,10 +9,12 @@ const Friends = observer(() => {
 
     const {dataStore} = useRootStore()
 
-    const url = `https://t.me/Ruletkawinbot?start=ref_${tgHelper.getUserId()}`
+    // const url = `https://t.me/Ruletkawinbot?start=ref_${tgHelper.getUserId()}`
+    const invite_url = `https://t.me/wbrullerbot?start=ref_${tgHelper.getUserId()}`
+    const share_url = `https://t.me/share/url?url=${encodeURIComponent(invite_url)}&text=${encodeURIComponent('☝️ Переходи по ссылке в лучшую Telegram рулетку, вращай и получай купоны от 500₽ до 30000₽ на WB')}`
 
     const onCopyHandler = () => {
-        navigator.clipboard.writeText(url)
+        navigator.clipboard.writeText(share_url)
     }
 
     useEffect(() => {
@@ -25,7 +27,7 @@ const Friends = observer(() => {
             className="text-[10.71px] leading-[110%] tracking-[-2%] opacity-50 mt-1">За каждого друга вы получаете 1
             вращение</p>
             <button
-                onClick={() => tgHelper.openLink(url)}
+                onClick={() => tgHelper.openLink(share_url)}
                 className="p-px bg-gradient-to-t from-transparent from-70% to-[#F03AC2] rounded-[12.17px] mt-3">
                 <div
                     className="flex items-center gap-x-1 bg-gradient-to-b from-[#E204A9] to-[#FE5FD6] w-[202px] justify-center h-[44px] rounded-[12px]">
@@ -35,11 +37,13 @@ const Friends = observer(() => {
         </div>
 
         <div className="flex flex-col border border-[#202023] rounded-[15px] mt-7 px-4 py-3 gap-y-1">
-            <p className="text-[19.2px] font-bold leading-[23px]">Скопировать вашу ссылку</p>
+            <p className="text-[19.2px] font-bold leading-[23px]">
+                Скопировать вашу ссылку
+            </p>
             <div className="flex gap-x-2 items-center">
                 <div className="w-[1px] h-[16px] rounded-[10px] bg-[#E100A8] shadow-[0px_0px_10px_#E100A8]"></div>
                 <p className="text-[13.7px] leading-[17px] text-[#F74DCC] truncate">
-                    {url}
+                    {invite_url}
                 </p>
                 <Image
                     src={"/icon/copy.svg"}
