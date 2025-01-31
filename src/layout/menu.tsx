@@ -43,7 +43,7 @@ const Menu = () => {
                 font-proxima font-bold
             `}
             >
-                <LinkToPage link="/roulette" icon="/icon/roulette.svg" title="Рулетка"/>
+                <LinkToPage link="/roulettte" icon="/icon/roulette.svg" title="Рулетка"/>
                 <LinkToPage link="/friends" icon="/icon/friend.svg" title="Друзья"/>
                 <LinkToPage link="/tasks" icon="/icon/task.svg" title="Задания"/>
             </nav>

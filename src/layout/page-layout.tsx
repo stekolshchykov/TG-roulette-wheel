@@ -4,7 +4,7 @@ import React from "react";
 
 const PageLayout = (props: { children?: React.ReactNode }) => {
     const router = useRouter();
-    const isMainPage = router.pathname === "/roulette";
+    const isMainPage = router.pathname === "/roulettte";
 
     return (
         <>

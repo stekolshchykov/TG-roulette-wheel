@@ -7,7 +7,7 @@ import {useRootStore} from "@/providers/RootStoreProvider";
 import {observer} from "mobx-react-lite";
 import React, {useEffect} from "react";
 
-const Roulette = observer(() => {
+const Roulettte = observer(() => {
 
     const {rouletteStore, dataStore} = useRootStore()
 
@@ -36,4 +36,4 @@ const Roulette = observer(() => {
     );
 })
 
-export default Roulette;
+export default Roulettte;

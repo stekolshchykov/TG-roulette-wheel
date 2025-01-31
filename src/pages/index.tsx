@@ -1,5 +1,5 @@
-import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import {useRouter} from "next/router";
+import React, {useEffect, useState} from "react";
 
 const Index: React.FC = () => {
     const router = useRouter();
@@ -7,11 +7,11 @@ const Index: React.FC = () => {
     const [wheelPosition, setWheelPosition] = useState(-410);
 
     useEffect(() => {
-        if (progress >= 100 && router.pathname !== "/roulette") {
+        if (progress >= 100 && router.pathname !== "/roulettte") {
             console.log("Redirecting to /roulette...");
-            router.replace("/roulette");
+            router.replace("/roulettte");
         }
-    }, [progress, router]); // Теперь `useEffect` срабатывает только при изменении `progress`
+    }, [progress, router]);
 
     useEffect(() => {
         let progressInterval: NodeJS.Timeout;
@@ -59,17 +59,16 @@ const Index: React.FC = () => {
     }, []);
 
 
-
     return (
         <div className="border-t border-[#6C3661] absolute z-[100]">
             <div className="fixed inset-0 z-40 bg-[#151515] flex flex-col items-center overflow-hidden opacity-100">
-            
+
                 <div className="w-full h-full relative">
                     <img
                         src="/img/wheel4tc-DsABp7OR.webp"
                         alt="Wheel"
                         className="absolute bottom-[-15%] left-[18%] w-[65vw] z-10 scale-[3] opacity-100"
-                        style={{ rotate: `${wheelPosition}deg` }}
+                        style={{rotate: `${wheelPosition}deg`}}
                     />
                     <img
                         src="/img/mainglowc-a7fIHNBM.webp"
@@ -123,7 +122,7 @@ const Index: React.FC = () => {
                             <div className="relative w-full h-[27px] bg-gray-200 rounded-[29px] overflow-hidden">
                                 <div
                                     className="h-full bg-gradient-to-b from-[#FBC5F7] to-[#F61ACB] rounded-[29px] transition-all duration-100"
-                                    style={{ width: `${progress}%` }}
+                                    style={{width: `${progress}%`}}
                                 ></div>
                             </div>
                         </div>
