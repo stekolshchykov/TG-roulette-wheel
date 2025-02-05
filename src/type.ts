@@ -16,7 +16,7 @@ export interface TaskDataI {
     is_subscribed: boolean
 }
 
-export interface ApiWebappReponseI {
+export interface ApiWebappResponseI {
     available_spins: number
     used_spins: number
     referral_count: number
@@ -25,6 +25,7 @@ export interface ApiWebappReponseI {
     gift_link: string
     partner_card_link: string
     spin_prize_link: string
+    my_coupons_link: string
     is_referral_bonus_available: boolean
     is_referral_bonus_used: boolean
     friends: {

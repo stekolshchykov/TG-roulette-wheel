@@ -1,5 +1,5 @@
 import axiosBackendInstance from "@/libs/axios-backend-instance";
-import {ApiWebappReponseI} from "@/type";
+import {ApiWebappResponseI} from "@/type";
 
 class ApiHelper {
 
@@ -28,7 +28,7 @@ class ApiHelper {
      * POST /api/webapp/ - основна інфа (к-сть, спінів, час до подарунку, лінки для кнопок)
      * @param tg_user_id
      */
-    webapp = async (tg_user_id: number): Promise<ApiWebappReponseI | null> => {
+    webapp = async (tg_user_id: number): Promise<ApiWebappResponseI | null> => {
         return await axiosBackendInstance
             .post("/api/webapp/", {tg_user_id})
             .then((response) => {

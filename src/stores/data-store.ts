@@ -1,7 +1,7 @@
 import apiHelper from "@/libs/api-helper";
 import tgHelper from "@/libs/tg-helper";
 import {RootStore} from "@/stores/root-store";
-import {ApiWebappReponseI} from "@/type";
+import {ApiWebappResponseI} from "@/type";
 import {makeAutoObservable, toJS} from "mobx";
 
 class DataStore {
@@ -11,6 +11,8 @@ class DataStore {
         free_spin_at: number,
         is_referral_bonus_available: boolean,
         partner_card_link: string,
+        spin_prize_link: string,
+        my_coupons_link: string,
         used_spins: number,
         friends: {
             name: string
@@ -21,11 +23,13 @@ class DataStore {
         free_spin_at: 0,
         is_referral_bonus_available: false,
         partner_card_link: "",
+        my_coupons_link: "",
+        spin_prize_link: "",
         used_spins: 0,
         friends: [],
     }
     public loaded = false
-    private dataRaw: null | ApiWebappReponseI = null
+    private dataRaw: null | ApiWebappResponseI = null
 
     constructor(public rootStore: RootStore) {
         this.load()
@@ -46,6 +50,8 @@ class DataStore {
             this.data.partner_card_link = this.dataRaw.partner_card_link
             this.data.used_spins = this.dataRaw.used_spins
             this.data.friends = this.dataRaw?.friends || []
+            this.data.spin_prize_link = this.dataRaw?.spin_prize_link
+            this.data.my_coupons_link = this.dataRaw?.my_coupons_link
         }
 
         ///////////////////////

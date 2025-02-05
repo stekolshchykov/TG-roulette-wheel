@@ -1,12 +1,20 @@
+import tgHelper from "@/libs/tg-helper";
 import {useRootStore} from "@/providers/RootStoreProvider";
 import Modal from "@/ui/modal";
+import {toJS} from "mobx";
 import {observer} from "mobx-react-lite";
 import Image from "next/image";
 import React, {useCallback, useEffect, useState} from "react";
 
 const WinModal = observer(() => {
-    const {rouletteStore} = useRootStore();
+    const {rouletteStore, dataStore} = useRootStore();
     const [isOpen, setIsOpen] = useState(false);
+
+    const getPresentHandler = () => {
+        if (dataStore.data.spin_prize_link)
+            tgHelper.openLink(dataStore.data.spin_prize_link)
+        console.log("+++", toJS(dataStore.data))
+    }
 
     useEffect(() => {
         setTimeout(() => {
@@ -84,12 +92,12 @@ const WinModal = observer(() => {
                         <button
                             className="p-px bg-gradient-to-t from-transparent from-70% to-[#F03AC2] rounded-[12.17px] mt-2 mx-auto z-50 active:scale-95 transition-transform"
                             style={{WebkitTapHighlightColor: "transparent", touchAction: "manipulation"}}
+                            onClick={getPresentHandler}
                         >
                             <div
                                 className="flex items-center gap-x-1 bg-gradient-to-b from-[#E204A9] to-[#FE5FD6] w-[202px] justify-center h-[44px] rounded-[12px]">
                                 <p className="font-bold text-[17px] leading-[110%] tracking-[-2%]">
-                                    Забрать
-                                    подарок</p>
+                                    Забрать подарок!</p>
                             </div>
                         </button>
                     </div>

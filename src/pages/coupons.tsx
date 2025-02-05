@@ -11,8 +11,8 @@ const Coupons = observer(() => {
     const {dataStore} = useRootStore()
 
     const getActiveKeyHandler = () => {
-        if (dataStore.data.partner_card_link) {
-            tgHelper.openLink(dataStore.data.partner_card_link)
+        if (dataStore.data.my_coupons_link) {
+            tgHelper.openLink(dataStore.data.my_coupons_link)
         }
     }
 
