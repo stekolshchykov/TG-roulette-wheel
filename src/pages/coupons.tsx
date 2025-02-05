@@ -1,9 +1,21 @@
 import PageLayout from "@/layout/page-layout";
+import tgHelper from "@/libs/tg-helper";
+import {useRootStore} from "@/providers/RootStoreProvider";
 import ButtonUi from "@/ui/button-ui";
+import {observer} from "mobx-react-lite";
 import Image from "next/image";
 import React from "react";
 
-const Coupons = () => {
+const Coupons = observer(() => {
+
+    const {dataStore} = useRootStore()
+
+    const getActiveKeyHandler = () => {
+        if (dataStore.data.partner_card_link) {
+            tgHelper.openLink(dataStore.data.partner_card_link)
+        }
+    }
+
     return (
         <PageLayout>
             <div className="relative z-10 flex flex-col px-4 w-full">
@@ -23,7 +35,7 @@ const Coupons = () => {
                     <Image src="/icon/roulette-accent.svg" alt="icon" width={24} height={24}/>
                 </div>
                 <div className="w-full mt-3">
-                    <ButtonUi size={"big"}>
+                    <ButtonUi size={"big"} onClick={getActiveKeyHandler}>
                         Получить код активации
                     </ButtonUi>
                 </div>
@@ -134,6 +146,6 @@ const Coupons = () => {
             </div>
         </PageLayout>
     );
-};
+})
 
 export default Coupons;
