@@ -1,7 +1,6 @@
 import tgHelper from "@/libs/tg-helper";
 import {useRootStore} from "@/providers/RootStoreProvider";
 import Modal from "@/ui/modal";
-import {toJS} from "mobx";
 import {observer} from "mobx-react-lite";
 import Image from "next/image";
 import React, {useCallback, useEffect, useState} from "react";
@@ -13,7 +12,6 @@ const WinModal = observer(() => {
     const getPresentHandler = () => {
         if (dataStore.data.spin_prize_link)
             tgHelper.openLink(dataStore.data.spin_prize_link)
-        console.log("+++", toJS(dataStore.data))
     }
 
     useEffect(() => {
